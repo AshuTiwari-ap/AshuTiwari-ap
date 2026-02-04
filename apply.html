@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply Online | Ashu Cyber Cafe</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-landmark"></i></span>
+        <div>
+          <h1>Ashu Cyber Cafe</h1>
+          <p>& Jan Seva Kendra</p>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a class="active" href="apply.html">Apply Online</a>
+        <a href="status.html">Check Status</a>
+        <a href="admin.html">Admin Login</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h2>Apply Online</h2>
+      <p>Form fill karein aur application ID paayein.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container form-grid">
+      <div>
+        <h3>Application Form</h3>
+        <p>Saari details sahi se bharें. Submit ke baad application ID generate hogi.</p>
+        <form id="applyForm" class="styled-form">
+          <div class="form-row">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-row">
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" name="mobile" required />
+          </div>
+          <div class="form-row">
+            <label for="service">Select Service</label>
+            <select id="service" name="service" required>
+              <option value="">Choose Service</option>
+              <option>Aadhaar Card</option>
+              <option>PAN Card</option>
+              <option>Ayushman Card</option>
+              <option>Voter ID</option>
+              <option>E-Shram Card</option>
+              <option>Income Certificate</option>
+              <option>Caste Certificate</option>
+              <option>Residence Certificate</option>
+              <option>Passport</option>
+              <option>Driving License</option>
+              <option>Online Form Filling</option>
+              <option>Printing / Scanning / Lamination</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+          </div>
+          <div class="form-row">
+            <label for="document">Document Upload (optional)</label>
+            <input type="file" id="document" name="document" accept=".pdf,.jpg,.png" />
+            <small>Note: Free hosting me file upload save nahi hota. Admin ke liye offline record rahega.</small>
+          </div>
+          <button type="submit" class="btn primary">Submit Application</button>
+        </form>
+      </div>
+      <div class="info-card">
+        <h3>Process Steps</h3>
+        <ol>
+          <li>Form submit karein</li>
+          <li>Application ID receive karein</li>
+          <li>Status check page par ID daalein</li>
+          <li>Admin processing ke baad status update</li>
+        </ol>
+        <div class="alert" id="applySuccess" hidden>
+          <h4>Application Submitted!</h4>
+          <p>Your Application ID: <strong id="applicationId"></strong></p>
+          <p>Status check ke liye ID copy kar lein.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Ashu Cyber Cafe &amp; Jan Seva Kendra</h3>
+        <p>Digital services that empower every citizen.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="status.html">Check Status</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p><i class="fa-solid fa-location-dot"></i> Your Address, City</p>
+        <p><i class="fa-solid fa-phone"></i> +91 99999 99999</p>
+        <p><i class="fa-solid fa-envelope"></i> ashucafe@email.com</p>
+      </div>
+    </div>
+    <p class="copyright">© 2024 Ashu Cyber Cafe. All rights reserved.</p>
+  </footer>
+
+  <a class="floating-btn whatsapp" href="https://wa.me/919999999999" target="_blank" rel="noreferrer">
+    <i class="fa-brands fa-whatsapp"></i>
+    WhatsApp
+  </a>
+  <a class="floating-btn call" href="tel:+919999999999">
+    <i class="fa-solid fa-phone"></i>
+    Call Now
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
