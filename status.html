@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check Status | Ashu Cyber Cafe</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-landmark"></i></span>
+        <div>
+          <h1>Ashu Cyber Cafe</h1>
+          <p>& Jan Seva Kendra</p>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="apply.html">Apply Online</a>
+        <a class="active" href="status.html">Check Status</a>
+        <a href="admin.html">Admin Login</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h2>Check Application Status</h2>
+      <p>Application ID enter karein aur status dekhein.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container status-grid">
+      <div class="info-card">
+        <h3>Track Your Application</h3>
+        <form id="statusForm" class="styled-form">
+          <div class="form-row">
+            <label for="statusId">Application ID</label>
+            <input type="text" id="statusId" name="statusId" placeholder="APPXXXXXX" required />
+          </div>
+          <button type="submit" class="btn primary">Check Status</button>
+        </form>
+        <div class="alert" id="statusResult" hidden>
+          <h4>Status</h4>
+          <p id="statusMessage"></p>
+        </div>
+      </div>
+      <div>
+        <h3>Status Guide</h3>
+        <ul class="status-list">
+          <li><span class="status-pill pending">Pending</span> Verification in progress</li>
+          <li><span class="status-pill approved">Approved</span> Application approved</li>
+          <li><span class="status-pill rejected">Rejected</span> Correction needed</li>
+          <li><span class="status-pill completed">Completed</span> Document ready</li>
+        </ul>
+        <p>Any help chahiye? Call ya WhatsApp par contact karein.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Ashu Cyber Cafe &amp; Jan Seva Kendra</h3>
+        <p>Digital services that empower every citizen.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="apply.html">Apply Online</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p><i class="fa-solid fa-location-dot"></i> Your Address, City</p>
+        <p><i class="fa-solid fa-phone"></i> +91 99999 99999</p>
+        <p><i class="fa-solid fa-envelope"></i> ashucafe@email.com</p>
+      </div>
+    </div>
+    <p class="copyright">© 2024 Ashu Cyber Cafe. All rights reserved.</p>
+  </footer>
+
+  <a class="floating-btn whatsapp" href="https://wa.me/919999999999" target="_blank" rel="noreferrer">
+    <i class="fa-brands fa-whatsapp"></i>
+    WhatsApp
+  </a>
+  <a class="floating-btn call" href="tel:+919999999999">
+    <i class="fa-solid fa-phone"></i>
+    Call Now
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
