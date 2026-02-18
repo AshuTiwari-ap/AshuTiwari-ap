@@ -1,184 +1,222 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashu Cyber Cafe & Jan Seva Kendra</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S.D.S Convent School | School Management System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-bar">
-      <div class="logo">
-        <span class="logo-icon"><i class="fa-solid fa-landmark"></i></span>
-        <div>
-          <h1>Ashu Cyber Cafe</h1>
-          <p>& Jan Seva Kendra</p>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#home">S.D.S Convent School</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#students">Students</a></li>
+          <li class="nav-item"><a class="nav-link" href="#staff">Staff</a></li>
+          <li class="nav-item"><a class="nav-link" href="#notice">Notice</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
+          <li class="nav-item"><a class="nav-link" href="#meetings">Meetings</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html">Admin Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" class="hero-banner text-white py-5">
+    <div class="container py-4">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="badge bg-warning text-dark mb-3">English Medium • Modern Campus • Value Based Education</span>
+          <h1 class="display-5 fw-bold">S.D.S Convent School</h1>
+          <p class="lead mb-2">Gopalpur, Kanpur Nagar, Uttar Pradesh</p>
+          <p class="mb-4">Principal: <strong>Miss Jyoti Diwedi</strong></p>
+          <a href="#students" class="btn btn-light btn-lg me-2">Student Management</a>
+          <a href="#contact" class="btn btn-outline-light btn-lg">Contact School</a>
+        </div>
+        <div class="col-lg-5">
+          <div class="card principal-card shadow-lg border-0">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Principal photo">
+            <div class="card-body">
+              <h5 class="card-title mb-1">Miss Jyoti Diwedi</h5>
+              <p class="card-text text-muted mb-0">Principal, S.D.S Convent School</p>
+            </div>
+          </div>
         </div>
       </div>
-      <nav class="nav-links">
-        <a class="active" href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="apply.html">Apply Online</a>
-        <a href="status.html">Check Status</a>
-        <a href="admin.html">Admin Login</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <span class="badge">Government Services + Digital Solutions</span>
-        <h2>All Government &amp; Online Services in One Place</h2>
-        <p>
-          Aadhaar, PAN, Ayushman, Voter ID aur sabhi certificates ke liye fast, secure aur
-          trusted support. Ek hi jagah par sabhi digital services ka complete solution.
-        </p>
-        <div class="hero-actions">
-          <a class="btn primary" href="apply.html">Apply Now</a>
-          <a class="btn ghost" href="status.html">Check Status</a>
+  <main>
+    <section id="about" class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">About School</h2>
         </div>
-        <div class="hero-stats">
-          <div>
-            <h3>5000+</h3>
-            <p>Applications Processed</p>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5>School History</h5>
+                <p>S.D.S Convent School was founded to deliver affordable quality education in Gopalpur. Over the years, the school has built a strong reputation for academics, discipline, and all-round development.</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3>24x7</h3>
-            <p>Online Status Support</p>
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5>Mission & Vision</h5>
+                <p>Our mission is to shape responsible citizens with knowledge and values. Our vision is to create a future-ready generation with confidence, creativity, and compassion.</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3>Fast</h3>
-            <p>Printing &amp; Scanning</p>
-          </div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="slider">
-          <div class="slide active">
-            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80" alt="Digital government services" />
-          </div>
-          <div class="slide">
-            <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80" alt="Cyber cafe and online form filling" />
-          </div>
-          <div class="slide">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80" alt="Citizen services" />
-          </div>
-          <div class="slider-dots">
-            <span class="dot active" data-slide="0"></span>
-            <span class="dot" data-slide="1"></span>
-            <span class="dot" data-slide="2"></span>
-          </div>
-        </div>
-        <div class="floating-card">
-          <i class="fa-solid fa-shield-halved"></i>
-          <div>
-            <h4>Secure &amp; Trusted</h4>
-            <p>Data protected + realtime updates</p>
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5>Infrastructure</h5>
+                <p>Smart classrooms, library, science lab, computer lab, activity rooms, playground, CCTV enabled campus, and secure transport support create a safe learning environment.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section services-preview">
+    <section id="students" class="py-5">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+          <h2 class="fw-bold mb-0">Student Management</h2>
+          <input id="studentSearch" class="form-control w-auto" placeholder="Search by name or class">
+        </div>
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <form id="studentForm" class="row g-3" enctype="multipart/form-data">
+              <input type="hidden" id="studentId">
+              <div class="col-md-3"><input class="form-control" id="full_name" placeholder="Full Name" required></div>
+              <div class="col-md-3"><input class="form-control" id="father_name" placeholder="Father Name" required></div>
+              <div class="col-md-3"><input class="form-control" id="mother_name" placeholder="Mother Name" required></div>
+              <div class="col-md-1"><input class="form-control" id="class_name" placeholder="Class" required></div>
+              <div class="col-md-1"><input class="form-control" id="section" placeholder="Sec" required></div>
+              <div class="col-md-1"><input class="form-control" id="roll_number" placeholder="Roll" required></div>
+              <div class="col-md-3"><input type="date" class="form-control" id="dob" required></div>
+              <div class="col-md-3"><input class="form-control" id="address" placeholder="Address" required></div>
+              <div class="col-md-3"><input class="form-control" id="mobile" placeholder="Mobile Number" required></div>
+              <div class="col-md-3"><input class="form-control" id="aadhaar" placeholder="Aadhaar (Optional)"></div>
+              <div class="col-md-4"><input class="form-control" id="student_photo" type="url" placeholder="Student Photo URL"></div>
+              <div class="col-md-8 d-flex gap-2">
+                <button class="btn btn-primary" type="submit">Save Student</button>
+                <button class="btn btn-secondary" type="button" id="resetStudentForm">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-striped align-middle">
+            <thead class="table-primary"><tr><th>Photo</th><th>Name</th><th>Class</th><th>Roll</th><th>Mobile</th><th>Actions</th></tr></thead>
+            <tbody id="studentTableBody"></tbody>
+          </table>
+        </div>
+        <div id="studentProfile" class="alert alert-info d-none mt-3"></div>
+      </div>
+    </section>
+
+    <section id="staff" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="fw-bold mb-3">Staff Management</h2>
+        <form id="staffForm" class="row g-3 mb-4">
+          <input type="hidden" id="staffId">
+          <div class="col-md-3"><input id="staff_name" class="form-control" placeholder="Name" required></div>
+          <div class="col-md-2"><input id="designation" class="form-control" placeholder="Designation" required></div>
+          <div class="col-md-2"><input id="subject" class="form-control" placeholder="Subject" required></div>
+          <div class="col-md-2"><input id="staff_mobile" class="form-control" placeholder="Mobile" required></div>
+          <div class="col-md-3"><input id="staff_photo" class="form-control" placeholder="Photo URL"></div>
+          <div class="col-12"><button class="btn btn-primary">Save Staff</button></div>
+        </form>
+        <div class="row" id="staffGrid"></div>
+      </div>
+    </section>
+
+    <section id="notice" class="py-5">
+      <div class="container">
+        <h2 class="fw-bold mb-3">Notice Board</h2>
+        <div class="list-group" id="noticeList"></div>
+      </div>
+    </section>
+
+    <section id="meetings" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="fw-bold mb-3">Upcoming Meetings</h2>
+        <div class="table-responsive">
+          <table class="table">
+            <thead><tr><th>Date</th><th>Time</th><th>Purpose</th></tr></thead>
+            <tbody id="meetingBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates" class="py-5">
+      <div class="container">
+        <h2 class="fw-bold mb-3">Certificate Generator</h2>
+        <div class="row g-3 align-items-end">
+          <div class="col-md-4">
+            <label class="form-label">Student</label>
+            <select id="certificateStudent" class="form-select"></select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Certificate Type</label>
+            <select id="certificateType" class="form-select">
+              <option>Bonafide Certificate</option>
+              <option>Character Certificate</option>
+              <option>Transfer Certificate</option>
+            </select>
+          </div>
+          <div class="col-md-4"><button id="downloadCertificate" class="btn btn-success w-100">Download as PDF</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="fw-bold mb-4">School Gallery</h2>
+        <div class="row g-3">
+          <div class="col-md-4"><img class="img-fluid rounded shadow-sm" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=700&q=80" alt="school campus"></div>
+          <div class="col-md-4"><img class="img-fluid rounded shadow-sm" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=80" alt="students"></div>
+          <div class="col-md-4"><img class="img-fluid rounded shadow-sm" src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=700&q=80" alt="classroom"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-5">
+      <div class="container">
+        <h2 class="fw-bold mb-3">Contact Form</h2>
+        <form id="contactForm" class="row g-3">
+          <div class="col-md-4"><input class="form-control" id="contact_name" placeholder="Your Name" required></div>
+          <div class="col-md-4"><input type="email" class="form-control" id="contact_email" placeholder="Email" required></div>
+          <div class="col-md-4"><input class="form-control" id="contact_phone" placeholder="Phone" required></div>
+          <div class="col-12"><textarea class="form-control" id="contact_message" rows="4" placeholder="Message" required></textarea></div>
+          <div class="col-12"><button class="btn btn-primary">Send Message</button></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-primary text-white py-4 text-center">
     <div class="container">
-      <div class="section-header">
-        <h2>Popular Services</h2>
-        <p>Har service ke liye quick assistance aur proper guidance.</p>
-      </div>
-      <div class="grid cards">
-        <div class="card">
-          <i class="fa-solid fa-id-card"></i>
-          <h3>Aadhaar Services</h3>
-          <p>Update, print aur enrollment support.</p>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-address-card"></i>
-          <h3>PAN Card</h3>
-          <p>New PAN, corrections &amp; reprint.</p>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-heart-pulse"></i>
-          <h3>Ayushman Card</h3>
-          <p>Eligibility check aur card creation.</p>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-file-lines"></i>
-          <h3>Certificates</h3>
-          <p>Income, caste, residence &amp; more.</p>
-        </div>
-      </div>
+      <p class="mb-1 fw-bold">S.D.S Convent School</p>
+      <p class="mb-0">Gopalpur, Kanpur Nagar, Uttar Pradesh</p>
     </div>
-  </section>
-
-  <section class="section highlight">
-    <div class="container highlight-grid">
-      <div>
-        <h2>Fast, Friendly &amp; Professional</h2>
-        <p>
-          Ashu Cyber Cafe &amp; Jan Seva Kendra me aapko milega expert guidance, transparent process
-          aur complete digital support. Form filling se leke document scanning tak sab kuch ek hi
-          jagah par.
-        </p>
-        <ul class="checklist">
-          <li><i class="fa-solid fa-circle-check"></i> Government certified workflows</li>
-          <li><i class="fa-solid fa-circle-check"></i> Instant print &amp; lamination</li>
-          <li><i class="fa-solid fa-circle-check"></i> WhatsApp &amp; call support</li>
-        </ul>
-      </div>
-      <div class="highlight-card">
-        <h3>Need Quick Help?</h3>
-        <p>Apply online karein ya directly WhatsApp par message bhejein.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="apply.html">Apply Online</a>
-          <a class="btn ghost" href="https://wa.me/919999999999" target="_blank" rel="noreferrer">WhatsApp Now</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <h3>Ashu Cyber Cafe &amp; Jan Seva Kendra</h3>
-        <p>Digital services that empower every citizen.</p>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="apply.html">Apply Online</a></li>
-          <li><a href="status.html">Check Status</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p><i class="fa-solid fa-location-dot"></i> Your Address, City</p>
-        <p><i class="fa-solid fa-phone"></i> +91 99999 99999</p>
-        <p><i class="fa-solid fa-envelope"></i> ashucafe@email.com</p>
-      </div>
-    </div>
-    <p class="copyright">© 2024 Ashu Cyber Cafe. All rights reserved.</p>
   </footer>
 
-  <a class="floating-btn whatsapp" href="https://wa.me/919999999999" target="_blank" rel="noreferrer">
-    <i class="fa-brands fa-whatsapp"></i>
-    WhatsApp
-  </a>
-  <a class="floating-btn call" href="tel:+919999999999">
-    <i class="fa-solid fa-phone"></i>
-    Call Now
-  </a>
-
-  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
