@@ -1,60 +1,60 @@
-# Ashu Cyber Cafe & Jan Seva Kendra Website
+# S.D.S Convent School Management Website
 
-Yeh project ek complete responsive website hai jo cyber cafe / Jan Seva Kendra ke liye banayi gayi hai. Isme apply online system, status tracking, aur admin panel included hai.
+A complete professional and responsive school management website for **S.D.S Convent School**, Gopalpur, Kanpur Nagar, Uttar Pradesh.
 
-## Features
-- Fully responsive (mobile + desktop)
-- Modern, colorful, professional UI
-- Home, Services, Apply Online, Status, Admin Login, Contact pages
-- Application ID generation + status tracking
-- Admin dashboard (total apps, new apps)
-- Status update & delete with password confirmation
-- 3 wrong attempts par 10-minute lock
-- WhatsApp + Call floating buttons
+## Modules Included
+- Home page with school banner, address, principal details, navigation.
+- About school (history, mission & vision, infrastructure).
+- Student Management (Add/Edit/Delete/Search/Profile).
+- Staff Management.
+- Notice Board (Exam/Holiday/General notices).
+- Meeting Scheduler.
+- Certificate Generator (Bonafide/Character/Transfer) with PDF export.
+- Secure Admin Login panel with dashboard counters.
+- Contact form.
+- School gallery.
+- Database backup system (download SQL backup).
 
 ## Tech Stack
-- HTML, CSS, JavaScript (LocalStorage based)
+- Frontend: HTML, CSS, JavaScript, Bootstrap 5
+- Backend: PHP (REST-style endpoints)
+- Database: MySQL
 
-## Step-by-step Setup (Beginner Friendly)
+## Project Structure
+- `index.html` - Public school website
+- `admin.html` - Admin login and dashboard
+- `app.js` - Public module logic (students/staff/notices/meetings/certificates)
+- `admin.js` - Admin actions (login, notices, meetings, dashboard)
+- `styles.css` - Theme and layout styling
+- `backend/api/*.php` - CRUD APIs
+- `backend/config.php` - Database configuration
+- `database.sql` - MySQL schema
+- `backend/backup.php` - Backup download generator
 
-### 1) Files ko download karein
-- Is repo ko zip me download karein ya git clone karein.
+## Setup Instructions
+1. Import DB schema:
+   ```bash
+   mysql -u root -p < database.sql
+   ```
+2. Update DB credentials in `backend/config.php` if needed.
+3. Run local PHP server:
+   ```bash
+   php -S 0.0.0.0:8000 -t .
+   ```
+4. Open:
+   - `http://localhost:8000/index.html`
+   - `http://localhost:8000/admin.html`
 
-### 2) Local run (Laptop par)
-1. Folder open karein.
-2. `index.html` par double click karein.
-3. Website browser me open ho jayegi.
+## Admin Login
+- Username: `admin`
+- Password: `admin123`
 
-> Tip: Best experience ke liye VS Code me **Live Server** extension use karein.
+## Notes
+- Certificate PDF includes school header and principal signature area.
+- Backup button in admin panel downloads live SQL dump.
 
-### 3) Free Hosting (Netlify / GitHub Pages)
-- Netlify:
-  1. https://www.netlify.com par sign up karein
-  2. "Add new site" -> "Deploy manually" -> folder drag & drop
-- GitHub Pages:
-  1. GitHub repo me code push karein
-  2. Repo Settings -> Pages -> Deploy from branch -> main
 
-## Admin Panel Instructions
-- Admin Login page: `admin.html`
-- Default password: `admin123`
-- Password change option available hai.
-
-> Note: Admin login aur applications LocalStorage me save hote hain, isliye different device/browser par data share nahi hota. Agar server-based database chahiye to PHP/MySQL integrate kiya ja sakta hai.
-
-## Customize Tips
-- Phone number, email, address change karne ke liye HTML files me content update karein.
-- Map location update ke liye `contact.html` me Google Maps link replace karein.
-
-## Folder Structure
-```
-index.html
-services.html
-apply.html
-status.html
-admin.html
-contact.html
-styles.css
-script.js
-admin.js
-```
+## White Screen / Not Found Fix
+- Server hamesha project root se start karein.
+- Recommended command: `php -S 0.0.0.0:8000 -t .`
+- Browser me `http://localhost:8000/index.php` open karein.
