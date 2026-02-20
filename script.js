@@ -3,7 +3,7 @@ const defaultDB = {
   students: [],
   staff: [],
   notices: [
-    { id: crypto.randomUUID(), type: "General Information", text: "Admissions open for session 2026-27.", date: new Date().toLocaleDateString() }
+    { id: crypto.randomUUID(), type: "सामान्य सूचना", text: "सत्र 2026-27 के लिए प्रवेश खुल चुके हैं।", date: new Date().toLocaleDateString() }
   ],
   meetings: [],
   branding: {}
@@ -33,15 +33,15 @@ function renderStudents() {
 
   tbody.innerHTML = filtered.map((s) => `
     <tr>
-      <td><img src="${s.photo || 'https://via.placeholder.com/80'}" class="table-avatar" alt="${s.fullName}"/></td>
+      <td><img src="${s.photo || 'https://via.placeholder.com/80?text=Photo'}" class="table-avatar" alt="${s.fullName}"/></td>
       <td>${s.fullName}</td>
       <td>${s.studentClass}-${s.section}</td>
       <td>${s.rollNumber}</td>
       <td>${s.mobileNumber}</td>
       <td>
-        <button class="btn btn-sm btn-info" onclick="viewStudent('${s.id}')">Profile</button>
-        <button class="btn btn-sm btn-warning" onclick="editStudent('${s.id}')">Edit</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteStudent('${s.id}')">Delete</button>
+        <button class="btn btn-sm btn-info" onclick="viewStudent('${s.id}')">प्रोफ़ाइल</button>
+        <button class="btn btn-sm btn-warning" onclick="editStudent('${s.id}')">संपादित करें</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteStudent('${s.id}')">हटाएँ</button>
       </td>
     </tr>
   `).join("");
@@ -56,14 +56,14 @@ function renderStaff() {
   const { staff } = getDB();
   byId("staffTableBody").innerHTML = staff.map((s) => `
     <tr>
-      <td><img src="${s.photo || 'https://via.placeholder.com/80'}" class="table-avatar" alt="${s.name}"/></td>
+      <td><img src="${s.photo || 'https://via.placeholder.com/80?text=Photo'}" class="table-avatar" alt="${s.name}"/></td>
       <td>${s.name}</td>
       <td>${s.designation}</td>
       <td>${s.subject}</td>
       <td>${s.mobile}</td>
       <td>
-        <button class="btn btn-sm btn-warning" onclick="editStaff('${s.id}')">Edit</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteStaff('${s.id}')">Delete</button>
+        <button class="btn btn-sm btn-warning" onclick="editStaff('${s.id}')">संपादित करें</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteStaff('${s.id}')">हटाएँ</button>
       </td>
     </tr>
   `).join("");
@@ -127,7 +127,7 @@ window.viewStudent = (id) => {
 };
 
 window.deleteStudent = (id) => {
-  if (!confirm("Delete this student?")) return;
+  if (!confirm("हटाएँ this student?")) return;
   saveSection("students", getDB().students.filter((s) => s.id !== id));
   renderStudents();
 };
@@ -141,7 +141,7 @@ window.editStudent = (id) => {
 };
 
 window.deleteStaff = (id) => {
-  if (!confirm("Delete this staff member?")) return;
+  if (!confirm("हटाएँ this staff member?")) return;
   saveSection("staff", getDB().staff.filter((s) => s.id !== id));
   renderStaff();
 };
@@ -212,7 +212,7 @@ byId("brandingForm").addEventListener("submit", async (e) => {
   db.branding = { logo, banner, principal };
   setDB(db);
   applyBranding();
-  alert("Branding updated.");
+  alert("ब्रांडिंग अपडेट हो गई है।");
 });
 
 byId("adminLoginForm").addEventListener("submit", (e) => {
@@ -224,7 +224,7 @@ byId("adminLoginForm").addEventListener("submit", (e) => {
     bootstrap.Modal.getOrCreateInstance(byId("loginModal")).hide();
     bootstrap.Modal.getOrCreateInstance(byId("adminModal")).show();
   } else {
-    byId("loginMessage").textContent = "Invalid credentials. Use admin / sds123";
+    byId("loginMessage").textContent = "गलत लॉगिन विवरण। उपयोग करें: admin / sds123";
   }
 });
 
@@ -233,7 +233,7 @@ byId("certificateForm").addEventListener("submit", (e) => {
   const { jsPDF } = window.jspdf;
   const db = getDB();
   const student = db.students.find((s) => s.id === byId("certificateStudent").value);
-  if (!student) return alert("Select a student.");
+  if (!student) return alert("कृपया एक छात्र चुनें।");
   const type = byId("certificateType").value;
 
   const doc = new jsPDF();
@@ -249,7 +249,7 @@ byId("certificateForm").addEventListener("submit", (e) => {
   doc.text(`is a bonafide student of Class ${student.studentClass}-${student.section}, Roll No. ${student.rollNumber}.`, 20, 70);
   doc.text(`DOB: ${student.dob}   Address: ${student.studentAddress}`, 20, 80);
   doc.text("Principal Signature", 145, 140);
-  doc.text("Miss Jyoti Diwedi", 145, 146);
+  doc.text("Miss Joty Dewadi", 145, 146);
   doc.rect(140, 110, 45, 28);
   doc.save(`${type.replace(/\s+/g, "_")}_${student.fullName}.pdf`);
 });
@@ -273,15 +273,15 @@ byId("importBackup").addEventListener("change", async (e) => {
     const parsed = JSON.parse(text);
     setDB(parsed);
     init();
-    alert("Backup restored.");
+    alert("बैकअप सफलतापूर्वक पुनर्स्थापित हुआ।");
   } catch {
-    alert("Invalid backup file.");
+    alert("अमान्य बैकअप फ़ाइल।");
   }
 });
 
 byId("contactForm").addEventListener("submit", (e) => {
   e.preventDefault();
-  alert("Thank you! We will contact you soon.");
+  alert("धन्यवाद! हम आपसे जल्द संपर्क करेंगे।");
   e.target.reset();
 });
 
