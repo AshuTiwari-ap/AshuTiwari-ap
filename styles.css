@@ -1,11 +1,1 @@
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f7f9fd; }
-.school-nav { background: linear-gradient(90deg, #0d47a1, #1e88e5); }
-.hero-section { background: radial-gradient(circle at top, #1565c0 20%, #0b1d3f 80%); }
-.principal-card { background: rgba(255,255,255,.12); border-radius: 14px; backdrop-filter: blur(4px); }
-.principal-photo, .table-avatar { width: 68px; height: 68px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
-.section-title { font-weight: 700; margin-bottom: 1rem; color: #0d47a1; }
-.gallery-img { height: 220px; width: 100%; object-fit: cover; }
-.footer-dark { background: #081731; }
-.metric h3 { color: #0d47a1; margin: 0; }
-.table td, .table th { vertical-align: middle; }
-@media (max-width: 768px) { .principal-photo, .table-avatar { width: 54px; height: 54px; } }
+body{font-family:Segoe UI,Tahoma,sans-serif;background:#f5f8ff}.school-nav{background:linear-gradient(90deg,#0b3d91,#1369d6)}.brand-logo{width:34px;height:34px;border-radius:50%;object-fit:cover}.hero-section{background:radial-gradient(circle at top,#1d6fd3,#0b1e47)}.principal-card{background:rgba(255,255,255,.12);border-radius:16px}.principal-photo{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #fff}.section-title{color:#0b3d91;font-weight:700}.soft-card{border:0;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);transition:.3s}.soft-card:hover{transform:translateY(-6px)}.footer-dark{background:#07142f}.animate-up{opacity:0;transform:translateY(20px);animation:fadeUp .8s ease forwards}.animate-up:nth-child(2){animation-delay:.12s}.animate-up:nth-child(3){animation-delay:.22s}@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}

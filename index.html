@@ -1,186 +1,49 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
+<!DOCTYPE html><html lang="hi"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>S.D.S Convent School | स्कूल प्रबंधन पोर्टल</title>
+  <title>S.D.S Convent School | होम</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="sticky-top shadow-sm">
-    <nav class="navbar navbar-expand-lg navbar-dark school-nav">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#home">S.D.S Convent School</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav ms-auto gap-lg-2">
-            <li class="nav-item"><a class="nav-link" href="#home">होम</a></li>
-            <li class="nav-item"><a class="nav-link" href="#about">परिचय</a></li>
-            <li class="nav-item"><a class="nav-link" href="#students">छात्र</a></li>
-            <li class="nav-item"><a class="nav-link" href="#staff">स्टाफ</a></li>
-            <li class="nav-item"><a class="nav-link" href="#notice">सूचना</a></li>
-            <li class="nav-item"><a class="nav-link" href="#certificates">प्रमाणपत्र</a></li>
-            <li class="nav-item"><a class="nav-link" href="#meetings">बैठकें</a></li>
-            <li class="nav-item"><a class="nav-link" href="#gallery">गैलरी</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">संपर्क</a></li>
-            <li class="nav-item"><button class="btn btn-warning btn-sm mt-1 mt-lg-0" data-bs-toggle="modal" data-bs-target="#loginModal">एडमिन लॉगिन</button></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section id="home" class="hero-section text-white">
-      <div class="container py-5">
-        <div class="row align-items-center g-4">
-          <div class="col-lg-7">
-            <h1 class="display-5 fw-bold mb-3">S.D.S Convent School</h1>
-            <p class="lead mb-2"><i class="fa-solid fa-location-dot me-2"></i>Gopalpur, Kanpur Nagar, Uttar Pradesh</p>
-            <div class="d-flex align-items-center gap-3 principal-card p-3 mt-3">
-              <img id="principalPhoto" src="https://images.unsplash.com/photo-1573496529574-be85d6a60704?auto=format&fit=crop&w=300&q=80" alt="Principal" class="principal-photo" />
-              <div>
-                <p class="mb-1 text-uppercase small">प्रधानाचार्य</p>
-                <h3 class="mb-0">Miss Joty Dewadi</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-5">
-            <img id="schoolBanner" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80" class="img-fluid rounded-4 shadow-lg" alt="स्कूल बैनर" />
-            <p class="small mt-2 mb-0 text-warning">नोट: ऊपर बैनर/प्रधानाचार्य फोटो को एडमिन डैशबोर्ड से आपके दिए गए फोटो से बदला जा सकता है।</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="py-5 bg-light">
-      <div class="container">
-        <h2 class="section-title">विद्यालय परिचय</h2>
-        <div class="row g-4">
-          <div class="col-md-4"><div class="card h-100"><div class="card-body"><h5>इतिहास</h5><p>Founded with a vision to provide values-driven modern education in Kanpur Nagar, S.D.S Convent School has nurtured learners with discipline, respect and excellence.</p></div></div></div>
-          <div class="col-md-4"><div class="card h-100"><div class="card-body"><h5>मिशन और विज़न</h5><p>To build confident, compassionate and future-ready citizens through quality teaching, moral values, technology integration and co-curricular development.</p></div></div></div>
-          <div class="col-md-4"><div class="card h-100"><div class="card-body"><h5>आधारभूत संरचना</h5><p>Smart classrooms, computer lab, science room, library, playground, safe transport and clean campus environment aligned with modern school standards.</p></div></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="students" class="py-5">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3"><h2 class="section-title mb-0">छात्र प्रबंधन</h2><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#studentModal">छात्र जोड़ें</button></div>
-        <div class="row g-3 mb-3">
-          <div class="col-md-6"><input id="studentSearch" class="form-control" placeholder="छात्र के नाम से खोजें" /></div>
-          <div class="col-md-3"><input id="classSearch" class="form-control" placeholder="कक्षा से खोजें" /></div>
-        </div>
-        <div class="table-responsive">
-          <table class="table table-striped align-middle">
-            <thead><tr><th>फोटो</th><th>नाम</th><th>कक्षा</th><th>रोल नं.</th><th>मोबाइल</th><th>क्रियाएँ</th></tr></thead>
-            <tbody id="studentTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section id="staff" class="py-5 bg-light">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3"><h2 class="section-title mb-0">स्टाफ प्रबंधन</h2><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staffModal">स्टाफ जोड़ें</button></div>
-        <div class="table-responsive"><table class="table table-bordered align-middle"><thead><tr><th>फोटो</th><th>नाम</th><th>पद</th><th>विषय</th><th>मोबाइल</th><th>क्रियाएँ</th></tr></thead><tbody id="staffTableBody"></tbody></table></div>
-      </div>
-    </section>
-
-    <section id="notice" class="py-5">
-      <div class="container">
-        <h2 class="section-title">सूचना पट्ट</h2>
-        <div id="noticeList" class="row g-3"></div>
-      </div>
-    </section>
-
-    <section id="meetings" class="py-5 bg-light">
-      <div class="container">
-        <h2 class="section-title">आगामी बैठकें</h2>
-        <div class="table-responsive"><table class="table"><thead><tr><th>तिथि</th><th>समय</th><th>उद्देश्य</th></tr></thead><tbody id="meetingTableBody"></tbody></table></div>
-      </div>
-    </section>
-
-    <section id="certificates" class="py-5">
-      <div class="container">
-        <h2 class="section-title">प्रमाणपत्र जनरेटर</h2>
-        <div class="card"><div class="card-body">
-          <form id="certificateForm" class="row g-3">
-            <div class="col-md-4"><label class="form-label">प्रमाणपत्र प्रकार</label><select id="certificateType" class="form-select" required><option value="">चुनें</option><option>Bonafide Certificate</option><option>Character Certificate</option><option>Transfer Certificate</option></select></div>
-            <div class="col-md-4"><label class="form-label">छात्र</label><select id="certificateStudent" class="form-select" required></select></div>
-            <div class="col-md-4 d-flex align-items-end"><button class="btn btn-success w-100" type="submit">PDF बनाएं और डाउनलोड करें</button></div>
-          </form>
-        </div></div>
-      </div>
-    </section>
-
-    <section id="gallery" class="py-5 bg-light">
-      <div class="container">
-        <h2 class="section-title">गैलरी</h2>
-        <div class="row g-3">
-          <div class="col-md-4"><img class="img-fluid rounded-3 gallery-img" src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80" alt="School Activity"></div>
-          <div class="col-md-4"><img class="img-fluid rounded-3 gallery-img" src="https://images.unsplash.com/photo-1602665807894-9e6b0f1f6d5a?auto=format&fit=crop&w=900&q=80" alt="कक्षाroom"></div>
-          <div class="col-md-4"><img class="img-fluid rounded-3 gallery-img" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=80" alt="School Building"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="py-5">
-      <div class="container">
-        <h2 class="section-title">संपर्क करें</h2>
-        <div class="row g-4">
-          <div class="col-md-5"><div class="card h-100"><div class="card-body"><h5>S.D.S Convent School</h5><p>Gopalpur, Kanpur Nagar, Uttar Pradesh</p><p><strong>प्रधानाचार्य:</strong> Miss Joty Dewadi</p><p><strong>Email:</strong> info@sdsconventschool.in</p><p><strong>Phone:</strong> +91 90000 00000</p></div></div></div>
-          <div class="col-md-7"><form class="card card-body" id="contactForm"><div class="row g-3"><div class="col-md-6"><input required class="form-control" placeholder="Your Name"></div><div class="col-md-6"><input required type="email" class="form-control" placeholder="Email"></div><div class="col-12"><textarea required class="form-control" rows="4" placeholder="Message"></textarea></div><div class="col-12"><button class="btn btn-primary" type="submit">Send Message</button></div></div></form></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="py-4 text-center text-white footer-dark">© 2026 S.D.S Convent School. सर्वाधिकार सुरक्षित।</footer>
-
-  <div class="modal fade" id="loginModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">एडमिन लॉगिन</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form id="adminLoginForm" class="row g-3"><div class="col-12"><input id="adminUsername" class="form-control" placeholder="यूज़रनेम" required></div><div class="col-12"><input id="adminPassword" type="password" class="form-control" placeholder="पासवर्ड" required></div><div class="col-12"><button class="btn btn-warning w-100">लॉगिन</button></div><p id="loginMessage" class="small text-danger mb-0"></p></form></div></div></div></div>
-
-  <div class="modal fade" id="adminModal" tabindex="-1"><div class="modal-dialog modal-xl"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">एडमिन डैशबोर्ड</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body">
-    <div class="row g-3 mb-3">
-      <div class="col-md-3"><div class="metric card card-body"><h6>कुल छात्र</h6><h3 id="metricStudents">0</h3></div></div>
-      <div class="col-md-3"><div class="metric card card-body"><h6>कुल स्टाफ</h6><h3 id="metricStaff">0</h3></div></div>
-      <div class="col-md-3"><div class="metric card card-body"><h6>कुल सूचनाएँ</h6><h3 id="metricNotices">0</h3></div></div>
-      <div class="col-md-3"><div class="metric card card-body"><h6>कुल बैठकें</h6><h3 id="metricMeetings">0</h3></div></div>
+</head><body>
+<nav class="navbar navbar-expand-lg navbar-dark school-nav sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html"><img id="brandLogo" src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" class="brand-logo" alt="logo">S.D.S Convent School</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">होम</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">परिचय</a></li>
+        <li class="nav-item"><a class="nav-link" href="students.html">छात्र</a></li>
+        <li class="nav-item"><a class="nav-link" href="staff.html">स्टाफ</a></li>
+        <li class="nav-item"><a class="nav-link" href="notice.html">सूचना</a></li>
+        <li class="nav-item"><a class="nav-link" href="certificates.html">प्रमाणपत्र</a></li>
+        <li class="nav-item"><a class="nav-link" href="meetings.html">बैठकें</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">संपर्क</a></li>
+        <li class="nav-item"><a class="nav-link text-warning" href="admin.html">एडमिन लॉगिन</a></li>
+      </ul>
     </div>
-    <div class="accordion" id="adminAccordion">
-      <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#noticeAdd">सूचना पोस्ट करें</button></h2><div id="noticeAdd" class="accordion-collapse collapse show" data-bs-parent="#adminAccordion"><div class="accordion-body"><form id="noticeForm" class="row g-2"><div class="col-md-4"><select id="noticeType" class="form-select" required><option value="">प्रकार चुनें</option><option>Exam Notice</option><option>Holiday Notice</option><option>General Information</option></select></div><div class="col-md-8"><input id="noticeText" class="form-control" placeholder="सूचना विवरण" required></div><div class="col-12"><button class="btn btn-primary">सूचना अपलोड करें</button></div></form></div></div></div>
-      <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#meetingAdd">बैठक शेड्यूल करें</button></h2><div id="meetingAdd" class="accordion-collapse collapse" data-bs-parent="#adminAccordion"><div class="accordion-body"><form id="meetingForm" class="row g-2"><div class="col-md-3"><input id="meetingDate" type="date" class="form-control" required></div><div class="col-md-3"><input id="meetingTime" type="time" class="form-control" required></div><div class="col-md-6"><input id="meetingPurpose" class="form-control" placeholder="उद्देश्य" required></div><div class="col-12"><button class="btn btn-primary">बैठक जोड़ें</button></div></form></div></div></div>
-      <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#branding">स्कूल लोगो / बैनर / प्रधानाचार्य फोटो</button></h2><div id="branding" class="accordion-collapse collapse" data-bs-parent="#adminAccordion"><div class="accordion-body"><form id="brandingForm" class="row g-2"><div class="col-md-4"><label class="form-label">स्कूल लोगो</label><input id="logoInput" type="file" class="form-control" accept="image/*"></div><div class="col-md-4"><label class="form-label">होम बैनर</label><input id="bannerInput" type="file" class="form-control" accept="image/*"></div><div class="col-md-4"><label class="form-label">प्रधानाचार्य फोटो</label><input id="principalInput" type="file" class="form-control" accept="image/*"></div><div class="col-12"><button class="btn btn-primary" type="submit">चित्र सेव करें</button></div></form></div></div></div>
-      <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#backup">बैकअप सिस्टम</button></h2><div id="backup" class="accordion-collapse collapse" data-bs-parent="#adminAccordion"><div class="accordion-body d-flex gap-2 flex-wrap"><button class="btn btn-success" id="exportBackup">बैकअप JSON निर्यात करें</button><label class="btn btn-outline-primary mb-0" for="importBackup">बैकअप JSON आयात करें</label><input id="importBackup" type="file" hidden accept="application/json"></div></div></div>
+  </div>
+</nav>
+<section class="hero-section text-white py-5">
+  <div class="container"><div class="row align-items-center g-4">
+    <div class="col-lg-7 animate-up">
+      <h1 class="display-5 fw-bold">S.D.S Convent School</h1>
+      <p class="lead"><i class="fa-solid fa-location-dot me-2"></i>Gopalpur, Kanpur Nagar, Uttar Pradesh</p>
+      <div class="principal-card p-3 mt-3 d-inline-flex align-items-center gap-3">
+        <img id="principalPhoto" class="principal-photo" src="https://images.unsplash.com/photo-1573496529574-be85d6a60704?auto=format&fit=crop&w=300&q=80" alt="Principal">
+        <div><div class="small">प्रधानाचार्य</div><h4 class="mb-0">Miss Joty Dewadi</h4></div>
+      </div>
+      <p class="small text-warning mt-2">बैनर/प्रिंसिपल फोटो एडमिन पैनल से बदली जा सकती है।</p>
     </div>
-  </div></div></div></div>
-
-  <div class="modal fade" id="studentModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">छात्र फॉर्म</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form id="studentForm" class="row g-2">
-    <input type="hidden" id="studentId">
-    <div class="col-md-4"><input id="studentPhoto" type="file" class="form-control" accept="image/*"></div>
-    <div class="col-md-4"><input id="fullName" class="form-control" placeholder="पूरा नाम" required></div>
-    <div class="col-md-4"><input id="fatherName" class="form-control" placeholder="पिता का नाम" required></div>
-    <div class="col-md-4"><input id="motherName" class="form-control" placeholder="माता का नाम" required></div>
-    <div class="col-md-2"><input id="studentClass" class="form-control" placeholder="कक्षा" required></div>
-    <div class="col-md-2"><input id="section" class="form-control" placeholder="सेक्शन" required></div>
-    <div class="col-md-2"><input id="rollNumber" class="form-control" placeholder="Roll No" required></div>
-    <div class="col-md-2"><input id="dob" type="date" class="form-control" required></div>
-    <div class="col-md-4"><input id="studentAddress" class="form-control" placeholder="पता" required></div>
-    <div class="col-md-4"><input id="mobileNumber" class="form-control" placeholder="Mobile" required></div>
-    <div class="col-md-4"><input id="aadhaar" class="form-control" placeholder="आधार (वैकल्पिक)"></div>
-    <div class="col-12"><button class="btn btn-primary">छात्र सेव करें</button></div>
-  </form></div></div></div></div>
-
-  <div class="modal fade" id="staffModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">स्टाफ फॉर्म</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form id="staffForm" class="row g-2"><input type="hidden" id="staffId"><div class="col-12"><input id="staffPhoto" type="file" class="form-control" accept="image/*"></div><div class="col-12"><input id="staffName" class="form-control" placeholder="Name" required></div><div class="col-12"><input id="designation" class="form-control" placeholder="पद" required></div><div class="col-12"><input id="subject" class="form-control" placeholder="विषय" required></div><div class="col-12"><input id="staffMobile" class="form-control" placeholder="Mobile" required></div><div class="col-12"><button class="btn btn-primary">स्टाफ सेव करें</button></div></form></div></div></div></div>
-
-  <div class="modal fade" id="studentProfileModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">छात्र प्रोफ़ाइल</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" id="studentProfileBody"></div></div></div></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="script.js"></script>
-</body>
-</html>
+    <div class="col-lg-5 animate-up"><img id="schoolBanner" class="img-fluid rounded-4 shadow-lg" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80" alt="Banner"></div>
+  </div></div>
+</section>
+<section class="container py-5"><div class="row g-4">
+  <div class="col-md-4 animate-up"><div class="card soft-card h-100"><div class="card-body"><h5>स्कूल मैनेजमेंट</h5><p>छात्र, स्टाफ, नोटिस और बैठकें अब डिजिटल तरीके से प्रबंधित करें।</p></div></div></div>
+  <div class="col-md-4 animate-up"><div class="card soft-card h-100"><div class="card-body"><h5>प्रमाणपत्र सुविधा</h5><p>Bonafide, Character और Transfer Certificate PDF में बनाएं।</p></div></div></div>
+  <div class="col-md-4 animate-up"><div class="card soft-card h-100"><div class="card-body"><h5>सुरक्षित एडमिन एक्सेस</h5><p>छात्र/स्टाफ की पूरी जानकारी सिर्फ एडमिन लॉगिन पर दिखेगी।</p></div></div></div>
+</div></section>
+<footer class="footer-dark text-white text-center py-3 mt-5">© 2026 S.D.S Convent School, Gopalpur, Kanpur Nagar</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script></body></html>
