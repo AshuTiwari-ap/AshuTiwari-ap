@@ -1,166 +1,120 @@
-const loginForm = document.querySelector("#adminLoginForm");
-const loginHint = document.querySelector("#loginHint");
-const adminPanel = document.querySelector("#adminPanel");
-const adminLoginCard = document.querySelector("#adminLoginCard");
-const applicationsTable = document.querySelector("#applicationsTable");
-const totalApplications = document.querySelector("#totalApplications");
-const newApplications = document.querySelector("#newApplications");
-const logoutBtn = document.querySelector("#logoutBtn");
-const changePasswordForm = document.querySelector("#changePasswordForm");
+const DB_KEY = 'sdsPortalDB';
+const el = (id) => document.getElementById(id);
 
-const getApplications = () => {
-  const stored = localStorage.getItem("applications");
-  return stored ? JSON.parse(stored) : [];
-};
+const seed = { students: [], staff: [], notices: [{ id: crypto.randomUUID(), type: 'General Information', text: 'सत्र 2026-27 प्रवेश प्रारम्भ', date: new Date().toLocaleDateString() }], meetings: [], media: [], branding: {} };
+if (!localStorage.getItem(DB_KEY)) localStorage.setItem(DB_KEY, JSON.stringify(seed));
 
-const saveApplications = (apps) => {
-  localStorage.setItem("applications", JSON.stringify(apps));
-};
+const getDB = () => JSON.parse(localStorage.getItem(DB_KEY));
+const setDB = (data) => localStorage.setItem(DB_KEY, JSON.stringify(data));
+const toData = (file) => new Promise((resolve) => { if (!file) resolve(''); const fr = new FileReader(); fr.onload = (e) => resolve(e.target.result); fr.readAsDataURL(file); });
 
-const getAdminPassword = () => localStorage.getItem("adminPassword") || "admin123";
-const setAdminPassword = (password) => localStorage.setItem("adminPassword", password);
-
-const getLoginAttempts = () => Number(localStorage.getItem("adminAttempts") || 0);
-const setLoginAttempts = (value) => localStorage.setItem("adminAttempts", value);
-const getLockUntil = () => Number(localStorage.getItem("adminLockUntil") || 0);
-const setLockUntil = (value) => localStorage.setItem("adminLockUntil", value);
-
-const renderApplications = () => {
-  if (!applicationsTable) return;
-  const apps = getApplications();
-  applicationsTable.innerHTML = apps
-    .map(
-      (app) => `
-      <tr>
-        <td>${app.id}</td>
-        <td>${app.name}</td>
-        <td>${app.service}</td>
-        <td>${app.mobile}</td>
-        <td>
-          <select data-id="${app.id}" class="status-select">
-            ${["Pending", "Approved", "Rejected", "Completed"]
-              .map(
-                (status) =>
-                  `<option value="${status}" ${status === app.status ? "selected" : ""}>${status}</option>`
-              )
-              .join("")}
-          </select>
-        </td>
-        <td>
-          <button class="btn ghost delete-btn" data-id="${app.id}">Delete</button>
-        </td>
-      </tr>
-    `
-    )
-    .join("");
-
-  if (totalApplications) totalApplications.textContent = apps.length;
-  if (newApplications) {
-    const fresh = apps.filter((app) => app.status === "Pending").length;
-    newApplications.textContent = fresh;
-  }
-};
-
-const setupAdminEvents = () => {
-  if (!applicationsTable) return;
-
-  applicationsTable.addEventListener("change", (event) => {
-    const target = event.target;
-    if (target.classList.contains("status-select")) {
-      const apps = getApplications();
-      const updated = apps.map((app) =>
-        app.id === target.dataset.id ? { ...app, status: target.value } : app
-      );
-      saveApplications(updated);
-      renderApplications();
-    }
-  });
-
-  applicationsTable.addEventListener("click", (event) => {
-    const target = event.target;
-    if (target.classList.contains("delete-btn")) {
-      const confirmPassword = prompt("Delete confirm karne ke liye admin password enter karein:");
-      if (confirmPassword === getAdminPassword()) {
-        const apps = getApplications();
-        const filtered = apps.filter((app) => app.id !== target.dataset.id);
-        saveApplications(filtered);
-        renderApplications();
-      } else if (confirmPassword) {
-        alert("Wrong password. Delete cancel.");
-      }
-    }
-  });
-};
-
-const showAdminPanel = () => {
-  if (adminPanel && adminLoginCard) {
-    adminPanel.hidden = false;
-    adminLoginCard.hidden = true;
-  }
-  renderApplications();
-  setupAdminEvents();
-};
-
-if (loginForm) {
-  loginForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const now = Date.now();
-    const lockUntil = getLockUntil();
-
-    if (lockUntil && now < lockUntil) {
-      const remaining = Math.ceil((lockUntil - now) / 60000);
-      if (loginHint) {
-        loginHint.textContent = `Account locked. ${remaining} min baad try karein.`;
-      }
-      return;
-    }
-
-    const password = document.querySelector("#adminPassword").value;
-    if (password === getAdminPassword()) {
-      localStorage.setItem("adminSession", "active");
-      setLoginAttempts(0);
-      setLockUntil(0);
-      if (loginHint) loginHint.textContent = "";
-      showAdminPanel();
-    } else {
-      const attempts = getLoginAttempts() + 1;
-      setLoginAttempts(attempts);
-      if (attempts >= 3) {
-        setLockUntil(Date.now() + 10 * 60 * 1000);
-        if (loginHint) loginHint.textContent = "3 wrong attempts. 10 minutes lock.";
-      } else if (loginHint) {
-        loginHint.textContent = `Wrong password. Attempts left: ${3 - attempts}`;
-      }
-    }
-  });
+function verifyOtp(label) {
+  const otp = String(Math.floor(100000 + Math.random() * 900000));
+  alert(`OTP (${label}): ${otp}`);
+  const entered = prompt('Enter OTP / OTP दर्ज करें');
+  if (entered !== otp) { alert('Invalid OTP / गलत OTP'); return false; }
+  return true;
 }
 
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("adminSession");
-    if (adminPanel && adminLoginCard) {
-      adminPanel.hidden = true;
-      adminLoginCard.hidden = false;
-    }
-  });
+function metrics() {
+  const d = getDB();
+  el('metricStudents').textContent = d.students.length;
+  el('metricStaff').textContent = d.staff.length;
+  el('metricNotices').textContent = d.notices.length;
+  el('metricMeetings').textContent = d.meetings.length;
+  el('metricMedia').textContent = d.media.length;
 }
 
-if (changePasswordForm) {
-  changePasswordForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const currentPassword = document.querySelector("#currentPassword").value;
-    const newPassword = document.querySelector("#newPassword").value;
-    if (currentPassword === getAdminPassword()) {
-      setAdminPassword(newPassword);
-      alert("Password updated successfully.");
-      changePasswordForm.reset();
-    } else {
-      alert("Current password incorrect.");
-    }
-  });
+function renderStudents() {
+  const d = getDB();
+  el('studentTableBody').innerHTML = d.students.map((s) => `<tr><td>${s.fullName}</td><td>${s.studentClass}-${s.section}</td><td>${s.mobileNumber}</td><td><button class='btn btn-sm btn-warning' onclick="editStudent('${s.id}')">Edit</button> <button class='btn btn-sm btn-danger' onclick="delStudent('${s.id}')">Del</button></td></tr>`).join('');
+  metrics();
 }
 
-if (adminPanel && !adminPanel.hidden) {
-  renderApplications();
-  setupAdminEvents();
+function renderStaff() {
+  const d = getDB();
+  el('staffTableBody').innerHTML = d.staff.map((s) => `<tr><td>${s.name}</td><td>${s.designation}</td><td>${s.subject}</td><td><button class='btn btn-sm btn-warning' onclick="editStaff('${s.id}')">Edit</button> <button class='btn btn-sm btn-danger' onclick="delStaff('${s.id}')">Del</button></td></tr>`).join('');
+  metrics();
 }
+
+function renderMediaAdmin() {
+  const d = getDB();
+  el('mediaAdminList').innerHTML = d.media.map((m) => `<div class="d-flex justify-content-between border-bottom py-1"><span>${m.title} (${m.type})</span><button class="btn btn-sm btn-outline-danger" onclick="delMedia('${m.id}')">Delete</button></div>`).join('');
+  metrics();
+}
+
+window.delStudent = (id) => { const d = getDB(); d.students = d.students.filter((x) => x.id !== id); setDB(d); renderStudents(); };
+window.delStaff = (id) => { const d = getDB(); d.staff = d.staff.filter((x) => x.id !== id); setDB(d); renderStaff(); };
+window.delMedia = (id) => { const d = getDB(); d.media = d.media.filter((x) => x.id !== id); setDB(d); renderMediaAdmin(); };
+window.editStudent = (id) => { const s = getDB().students.find((x) => x.id === id); if (!s) return; el('studentId').value = s.id; ['fullName', 'fatherName', 'motherName', 'studentClass', 'section', 'rollNumber', 'dob', 'studentAddress', 'mobileNumber', 'aadhaar'].forEach((k) => { el(k).value = s[k] || ''; }); };
+window.editStaff = (id) => { const s = getDB().staff.find((x) => x.id === id); if (!s) return; el('staffId').value = s.id; el('staffName').value = s.name; el('designation').value = s.designation; el('subject').value = s.subject; el('staffMobile').value = s.mobile; };
+
+function showPanel() { el('loginCard').hidden = true; el('adminPanel').hidden = false; renderStudents(); renderStaff(); renderMediaAdmin(); }
+
+el('adminLoginForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (el('adminUsername').value === 'admin' && el('adminPassword').value === 'sds123') { sessionStorage.setItem('sdsAdmin', '1'); showPanel(); }
+  else el('loginMessage').textContent = 'Wrong credentials / गलत जानकारी';
+});
+if (sessionStorage.getItem('sdsAdmin') === '1') showPanel();
+el('logoutBtn').addEventListener('click', () => { sessionStorage.removeItem('sdsAdmin'); location.reload(); });
+
+el('studentForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const isNew = !el('studentId').value;
+  if (isNew && !verifyOtp('Student Add')) return;
+  const d = getDB();
+  const id = el('studentId').value || crypto.randomUUID();
+  const old = d.students.find((x) => x.id === id);
+  const photo = el('studentPhoto').files[0] ? await toData(el('studentPhoto').files[0]) : (old?.photo || '');
+  const student = { id, photo, fullName: el('fullName').value, fatherName: el('fatherName').value, motherName: el('motherName').value, studentClass: el('studentClass').value, section: el('section').value, rollNumber: el('rollNumber').value, dob: el('dob').value, studentAddress: el('studentAddress').value, mobileNumber: el('mobileNumber').value, aadhaar: el('aadhaar').value };
+  d.students = d.students.some((x) => x.id === id) ? d.students.map((x) => (x.id === id ? student : x)) : [...d.students, student];
+  setDB(d); e.target.reset(); el('studentId').value = ''; renderStudents();
+});
+
+el('staffForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const isNew = !el('staffId').value;
+  if (isNew && !verifyOtp('Staff Add')) return;
+  const d = getDB();
+  const id = el('staffId').value || crypto.randomUUID();
+  const old = d.staff.find((x) => x.id === id);
+  const photo = el('staffPhoto').files[0] ? await toData(el('staffPhoto').files[0]) : (old?.photo || '');
+  const staff = { id, photo, name: el('staffName').value, designation: el('designation').value, subject: el('subject').value, mobile: el('staffMobile').value };
+  d.staff = d.staff.some((x) => x.id === id) ? d.staff.map((x) => (x.id === id ? staff : x)) : [...d.staff, staff];
+  setDB(d); e.target.reset(); el('staffId').value = ''; renderStaff();
+});
+
+el('noticeForm').addEventListener('submit', (e) => { e.preventDefault(); const d = getDB(); d.notices.unshift({ id: crypto.randomUUID(), type: el('noticeType').value, text: el('noticeText').value, date: new Date().toLocaleDateString() }); setDB(d); e.target.reset(); metrics(); alert('Notice added'); });
+el('meetingForm').addEventListener('submit', (e) => { e.preventDefault(); const d = getDB(); d.meetings.push({ id: crypto.randomUUID(), date: el('meetingDate').value, time: el('meetingTime').value, purpose: el('meetingPurpose').value }); setDB(d); e.target.reset(); metrics(); alert('Meeting added'); });
+
+el('brandingForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const d = getDB();
+  d.branding = { logo: el('logoInput').files[0] ? await toData(el('logoInput').files[0]) : d.branding.logo, banner: el('bannerInput').files[0] ? await toData(el('bannerInput').files[0]) : d.branding.banner, principal: el('principalInput').files[0] ? await toData(el('principalInput').files[0]) : d.branding.principal };
+  setDB(d); alert('Branding saved');
+});
+
+el('mediaForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const file = el('mediaFile').files[0];
+  if (!file) return;
+  const d = getDB();
+  d.media.unshift({ id: crypto.randomUUID(), type: el('mediaType').value, title: el('mediaTitle').value, file: await toData(file) });
+  setDB(d);
+  e.target.reset();
+  renderMediaAdmin();
+  alert('Media uploaded successfully');
+});
+
+el('exportBackup').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(getDB(), null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'sds-backup.json'; a.click(); URL.revokeObjectURL(a.href);
+});
+
+el('importBackup').addEventListener('change', async (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  try { const data = JSON.parse(await file.text()); setDB(data); renderStudents(); renderStaff(); renderMediaAdmin(); alert('Backup imported'); }
+  catch { alert('Invalid backup file'); }
+});

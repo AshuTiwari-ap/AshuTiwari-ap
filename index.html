@@ -2,183 +2,63 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashu Cyber Cafe & Jan Seva Kendra</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S.D.S Convent School | Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-bar">
-      <div class="logo">
-        <span class="logo-icon"><i class="fa-solid fa-landmark"></i></span>
-        <div>
-          <h1>Ashu Cyber Cafe</h1>
-          <p>& Jan Seva Kendra</p>
-        </div>
-      </div>
-      <nav class="nav-links">
-        <a class="active" href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="apply.html">Apply Online</a>
-        <a href="status.html">Check Status</a>
-        <a href="admin.html">Admin Login</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <span class="badge">Government Services + Digital Solutions</span>
-        <h2>All Government &amp; Online Services in One Place</h2>
-        <p>
-          Aadhaar, PAN, Ayushman, Voter ID aur sabhi certificates ke liye fast, secure aur
-          trusted support. Ek hi jagah par sabhi digital services ka complete solution.
-        </p>
-        <div class="hero-actions">
-          <a class="btn primary" href="apply.html">Apply Now</a>
-          <a class="btn ghost" href="status.html">Check Status</a>
-        </div>
-        <div class="hero-stats">
-          <div>
-            <h3>5000+</h3>
-            <p>Applications Processed</p>
-          </div>
-          <div>
-            <h3>24x7</h3>
-            <p>Online Status Support</p>
-          </div>
-          <div>
-            <h3>Fast</h3>
-            <p>Printing &amp; Scanning</p>
-          </div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="slider">
-          <div class="slide active">
-            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80" alt="Digital government services" />
-          </div>
-          <div class="slide">
-            <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80" alt="Cyber cafe and online form filling" />
-          </div>
-          <div class="slide">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80" alt="Citizen services" />
-          </div>
-          <div class="slider-dots">
-            <span class="dot active" data-slide="0"></span>
-            <span class="dot" data-slide="1"></span>
-            <span class="dot" data-slide="2"></span>
-          </div>
-        </div>
-        <div class="floating-card">
-          <i class="fa-solid fa-shield-halved"></i>
-          <div>
-            <h4>Secure &amp; Trusted</h4>
-            <p>Data protected + realtime updates</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section services-preview">
+  <nav class="navbar navbar-expand-lg navbar-dark school-nav sticky-top">
     <div class="container">
-      <div class="section-header">
-        <h2>Popular Services</h2>
-        <p>Har service ke liye quick assistance aur proper guidance.</p>
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html"><img id="brandLogo" src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" class="brand-logo" alt="logo">S.D.S Convent School</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" data-i18n="nav_home" href="index.html">होम</a></li>
+          <li class="nav-item"><a class="nav-link" data-i18n="nav_about" href="about.html">परिचय</a></li>
+          <li class="nav-item"><a class="nav-link" data-i18n="nav_students" href="students.html">छात्र</a></li>
+          <li class="nav-item"><a class="nav-link" data-i18n="nav_staff" href="staff.html">स्टाफ</a></li>
+          <li class="nav-item"><a class="nav-link" data-i18n="nav_notice" href="notice.html">सूचना</a></li>
+          <li class="nav-item"><a class="nav-link" data-i18n="nav_certificates" href="certificates.html">प्रमाणपत्र</a></li>
+          <li class="nav-item"><a class="nav-link" data-i18n="nav_meetings" href="meetings.html">बैठकें</a></li>
+          <li class="nav-item"><a class="nav-link" data-i18n="nav_gallery" href="gallery.html">गैलरी</a></li>
+          <li class="nav-item"><a class="nav-link" data-i18n="nav_contact" href="contact.html">संपर्क</a></li>
+          <li class="nav-item"><a class="nav-link text-warning" data-i18n="nav_admin" href="admin.html">एडमिन लॉगिन</a></li>
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><select id="langSelect" class="form-select form-select-sm"><option value="hi">हिंदी</option><option value="en">English</option></select></li>
+        </ul>
       </div>
-      <div class="grid cards">
-        <div class="card">
-          <i class="fa-solid fa-id-card"></i>
-          <h3>Aadhaar Services</h3>
-          <p>Update, print aur enrollment support.</p>
+    </div>
+  </nav>
+
+  <section class="motivation-strip"><div class="container"><p data-i18n="motivation_line"></p><p class="principal-request" data-i18n="principal_request"></p></div></section>
+
+  <section class="hero-section text-white py-5">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7 animate-up">
+          <h1 class="display-5 fw-bold">S.D.S Convent School</h1>
+          <p class="lead"><i class="fa-solid fa-location-dot me-2"></i>Gopalpur, Kanpur Nagar, Uttar Pradesh</p>
+          <div class="principal-card p-3 mt-3 d-inline-flex align-items-center gap-3">
+            <img id="principalPhoto" class="principal-photo" src="https://images.unsplash.com/photo-1573496529574-be85d6a60704?auto=format&fit=crop&w=300&q=80" alt="Principal">
+            <div><div class="small" data-i18n="principal_label">प्रधानाचार्य</div><h4 class="mb-0">Miss Joty Dewadi</h4></div>
+          </div>
+          <p class="small text-warning mt-2" data-i18n="home_banner_note"></p>
         </div>
-        <div class="card">
-          <i class="fa-solid fa-address-card"></i>
-          <h3>PAN Card</h3>
-          <p>New PAN, corrections &amp; reprint.</p>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-heart-pulse"></i>
-          <h3>Ayushman Card</h3>
-          <p>Eligibility check aur card creation.</p>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-file-lines"></i>
-          <h3>Certificates</h3>
-          <p>Income, caste, residence &amp; more.</p>
-        </div>
+        <div class="col-lg-5 animate-up"><img id="schoolBanner" class="img-fluid rounded-4 shadow-lg" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80" alt="Banner"></div>
       </div>
     </div>
   </section>
 
-  <section class="section highlight">
-    <div class="container highlight-grid">
-      <div>
-        <h2>Fast, Friendly &amp; Professional</h2>
-        <p>
-          Ashu Cyber Cafe &amp; Jan Seva Kendra me aapko milega expert guidance, transparent process
-          aur complete digital support. Form filling se leke document scanning tak sab kuch ek hi
-          jagah par.
-        </p>
-        <ul class="checklist">
-          <li><i class="fa-solid fa-circle-check"></i> Government certified workflows</li>
-          <li><i class="fa-solid fa-circle-check"></i> Instant print &amp; lamination</li>
-          <li><i class="fa-solid fa-circle-check"></i> WhatsApp &amp; call support</li>
-        </ul>
-      </div>
-      <div class="highlight-card">
-        <h3>Need Quick Help?</h3>
-        <p>Apply online karein ya directly WhatsApp par message bhejein.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="apply.html">Apply Online</a>
-          <a class="btn ghost" href="https://wa.me/919999999999" target="_blank" rel="noreferrer">WhatsApp Now</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <section class="container py-5"><div class="row g-4">
+    <div class="col-md-4"><div class="card soft-card h-100"><div class="card-body"><h5 data-i18n="home_card1_title"></h5><p data-i18n="home_card1_desc"></p></div></div></div>
+    <div class="col-md-4"><div class="card soft-card h-100"><div class="card-body"><h5 data-i18n="home_card2_title"></h5><p data-i18n="home_card2_desc"></p></div></div></div>
+    <div class="col-md-4"><div class="card soft-card h-100"><div class="card-body"><h5 data-i18n="home_card3_title"></h5><p data-i18n="home_card3_desc"></p></div></div></div>
+  </div></section>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <h3>Ashu Cyber Cafe &amp; Jan Seva Kendra</h3>
-        <p>Digital services that empower every citizen.</p>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="apply.html">Apply Online</a></li>
-          <li><a href="status.html">Check Status</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p><i class="fa-solid fa-location-dot"></i> Your Address, City</p>
-        <p><i class="fa-solid fa-phone"></i> +91 99999 99999</p>
-        <p><i class="fa-solid fa-envelope"></i> ashucafe@email.com</p>
-      </div>
-    </div>
-    <p class="copyright">© 2024 Ashu Cyber Cafe. All rights reserved.</p>
-  </footer>
-
-  <a class="floating-btn whatsapp" href="https://wa.me/919999999999" target="_blank" rel="noreferrer">
-    <i class="fa-brands fa-whatsapp"></i>
-    WhatsApp
-  </a>
-  <a class="floating-btn call" href="tel:+919999999999">
-    <i class="fa-solid fa-phone"></i>
-    Call Now
-  </a>
-
+  <footer class="footer-dark text-white text-center py-3 mt-5">© 2026 S.D.S Convent School, Gopalpur, Kanpur Nagar</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="common.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
