@@ -1,104 +1,73 @@
-const navToggle = document.querySelector(".nav-toggle");
-const navLinks = document.querySelector(".nav-links");
+const DB_KEY = 'sdsPortalDB';
 
-if (navToggle && navLinks) {
-  navToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
-  });
+function getDB() {
+  const raw = localStorage.getItem(DB_KEY);
+  if (raw) return JSON.parse(raw);
+  const seed = {
+    students: [],
+    staff: [],
+    notices: [{ id: crypto.randomUUID(), type: 'General Information', text: 'सत्र 2026-27 प्रवेश प्रारम्भ', date: new Date().toLocaleDateString() }],
+    meetings: [],
+    media: [],
+    branding: {}
+  };
+  localStorage.setItem(DB_KEY, JSON.stringify(seed));
+  return seed;
 }
 
-const slider = document.querySelector(".slider");
-const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".dot");
-let currentSlide = 0;
-
-const showSlide = (index) => {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle("active", i === index);
-  });
-  dots.forEach((dot, i) => {
-    dot.classList.toggle("active", i === index);
-  });
-  currentSlide = index;
-};
-
-if (slider && slides.length > 0) {
-  setInterval(() => {
-    const nextIndex = (currentSlide + 1) % slides.length;
-    showSlide(nextIndex);
-  }, 4500);
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => showSlide(index));
-  });
+function mediaCard(m) {
+  const view = m.type === 'video'
+    ? `<video class="media-thumb" controls src="${m.file}"></video>`
+    : `<img class="media-thumb" src="${m.file}" alt="${m.title}">`;
+  return `<div class="col-md-4"><div class="card soft-card h-100 media-card"><div class="card-body"><div class="badge text-bg-warning mb-2">${m.eventCategory || 'Annual Function'}</div><h6>${m.title}</h6>${view}</div></div></div>`;
 }
 
-const getApplications = () => {
-  const stored = localStorage.getItem("applications");
-  return stored ? JSON.parse(stored) : [];
-};
+function renderPublic(category = 'All') {
+  const d = getDB();
+  const studentCount = document.getElementById('studentCount');
+  const staffCount = document.getElementById('staffCount');
+  if (studentCount) studentCount.textContent = d.students.length;
+  if (staffCount) staffCount.textContent = d.staff.length;
 
-const saveApplications = (apps) => {
-  localStorage.setItem("applications", JSON.stringify(apps));
-};
+  const noticeList = document.getElementById('noticeList');
+  if (noticeList) {
+    noticeList.innerHTML = d.notices.map((n) => `<div class="card soft-card"><div class="card-body"><div class="small text-muted">${n.date} • ${n.type}</div><div>${n.text}</div></div></div>`).join('');
+  }
 
-const applyForm = document.querySelector("#applyForm");
-const applySuccess = document.querySelector("#applySuccess");
-const applicationIdField = document.querySelector("#applicationId");
+  const meetingBody = document.getElementById('meetingTableBody');
+  if (meetingBody) {
+    meetingBody.innerHTML = d.meetings.map((m) => `<tr><td>${m.date}</td><td>${m.time}</td><td>${m.purpose}</td></tr>`).join('') || '<tr><td colspan="3">No meetings</td></tr>';
+  }
 
-if (applyForm) {
-  applyForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const formData = new FormData(applyForm);
-    const newApplication = {
-      id: `APP${Date.now().toString().slice(-6)}${Math.floor(Math.random() * 90 + 10)}`,
-      name: formData.get("name"),
-      mobile: formData.get("mobile"),
-      service: formData.get("service"),
-      address: formData.get("address"),
-      status: "Pending",
-      createdAt: new Date().toISOString(),
-    };
-    const applications = getApplications();
-    applications.unshift(newApplication);
-    saveApplications(applications);
-
-    if (applicationIdField && applySuccess) {
-      applicationIdField.textContent = newApplication.id;
-      applySuccess.hidden = false;
-    }
-
-    applyForm.reset();
-  });
+  const mediaGrid = document.getElementById('mediaGrid');
+  if (mediaGrid) {
+    const lang = localStorage.getItem('sdsLang') || 'hi';
+    const emptyText = (I18N[lang] || I18N.hi).media_none;
+    const data = category === 'All' ? d.media : d.media.filter((m) => (m.eventCategory || 'Annual Function') === category);
+    mediaGrid.innerHTML = data.length ? data.map(mediaCard).join('') : `<div class="col-12"><div class="alert alert-secondary">${emptyText}</div></div>`;
+  }
 }
 
-const statusForm = document.querySelector("#statusForm");
-const statusResult = document.querySelector("#statusResult");
-const statusMessage = document.querySelector("#statusMessage");
+document.addEventListener('DOMContentLoaded', () => {
+  renderPublic();
 
-if (statusForm) {
-  statusForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const statusId = document.querySelector("#statusId").value.trim();
-    const applications = getApplications();
-    const found = applications.find((app) => app.id === statusId);
+  const filterBar = document.getElementById('galleryFilterBar');
+  if (filterBar) {
+    filterBar.querySelectorAll('button[data-category]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBar.querySelectorAll('button').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderPublic(btn.dataset.category);
+      });
+    });
+  }
 
-    if (statusResult && statusMessage) {
-      statusResult.hidden = false;
-      if (found) {
-        statusMessage.textContent = `${found.name} ki application status: ${found.status}`;
-      } else {
-        statusMessage.textContent = "Application ID nahi mila. Please sahi ID enter karein.";
-      }
-    }
-  });
-}
-
-const adminSession = localStorage.getItem("adminSession");
-const adminPanel = document.querySelector("#adminPanel");
-const adminLoginCard = document.querySelector("#adminLoginCard");
-
-if (adminSession === "active" && adminPanel && adminLoginCard) {
-  adminPanel.hidden = false;
-  adminLoginCard.hidden = true;
-}
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Message sent successfully / संदेश सफलतापूर्वक भेजा गया');
+      contactForm.reset();
+    });
+  }
+});
