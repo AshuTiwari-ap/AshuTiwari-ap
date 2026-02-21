@@ -30,7 +30,8 @@ const I18N = {
     save: 'सेव', type: 'प्रकार', ph_notice: 'सूचना लिखें', post: 'पोस्ट करें', schedule_meeting: 'बैठक शेड्यूल करें', ph_purpose: 'उद्देश्य', add: 'जोड़ें',
     branding: 'ब्रांडिंग', save_branding: 'सेव ब्रांडिंग', certificates: 'प्रमाणपत्र',
     ph_designation: 'पद', ph_subject: 'विषय',
-    media_type: 'मीडिया प्रकार', media_title: 'इवेंट शीर्षक', upload_media: 'मीडिया अपलोड करें', media_none: 'अभी तक कोई मीडिया अपलोड नहीं किया गया है।', event_category: 'इवेंट कैटेगरी', event_annual: 'वार्षिक समारोह', event_celebration: 'सेलिब्रेशन', event_cultural: 'सांस्कृतिक कार्यक्रम', filter_all: 'सभी'
+    media_type: 'मीडिया प्रकार', media_title: 'इवेंट शीर्षक', upload_media: 'मीडिया अपलोड करें', media_none: 'अभी तक कोई मीडिया अपलोड नहीं किया गया है।', event_category: 'इवेंट कैटेगरी', event_annual: 'वार्षिक समारोह', event_celebration: 'सेलिब्रेशन', event_cultural: 'सांस्कृतिक कार्यक्रम', filter_all: 'सभी',
+    genius_title: 'Genius AI Help', genius_placeholder: 'अपना सवाल लिखें...', genius_welcome: 'नमस्ते! मैं Genius हूँ। आप मुझसे एडमिशन, फीस, नोटिस, मीटिंग, सर्टिफिकेट या कॉन्टैक्ट के बारे में पूछ सकते हैं।'
   },
   en: {
     nav_home: 'Home', nav_about: 'About', nav_students: 'Students', nav_staff: 'Staff', nav_notice: 'Notice', nav_certificates: 'Certificates', nav_meetings: 'Meetings', nav_gallery: 'Gallery', nav_contact: 'Contact', nav_admin: 'Admin Login',
@@ -61,7 +62,8 @@ const I18N = {
     save: 'Save', type: 'Type', ph_notice: 'Write notice', post: 'Post', schedule_meeting: 'Schedule Meeting', ph_purpose: 'Purpose', add: 'Add',
     branding: 'Branding', save_branding: 'Save Branding', certificates: 'Certificates',
     ph_designation: 'Designation', ph_subject: 'Subject',
-    media_type: 'Media Type', media_title: 'Event Title', upload_media: 'Upload Media', media_none: 'No media uploaded yet.', event_category: 'Event Category', event_annual: 'Annual Function', event_celebration: 'Celebration', event_cultural: 'Cultural Activity', filter_all: 'All'
+    media_type: 'Media Type', media_title: 'Event Title', upload_media: 'Upload Media', media_none: 'No media uploaded yet.', event_category: 'Event Category', event_annual: 'Annual Function', event_celebration: 'Celebration', event_cultural: 'Cultural Activity', filter_all: 'All',
+    genius_title: 'Genius AI Help', genius_placeholder: 'Type your question...', genius_welcome: 'Hello! I am Genius. Ask me about admissions, fees, notices, meetings, certificates or contact information.'
   }
 };
 
@@ -78,6 +80,12 @@ function applyLanguage(lang) {
   });
   const select = document.getElementById('langSelect');
   if (select) select.value = lang;
+
+  const botInput = document.getElementById('geniusInput');
+  if (botInput) botInput.placeholder = pack.genius_placeholder;
+  const botTitle = document.getElementById('geniusTitle');
+  if (botTitle) botTitle.textContent = pack.genius_title;
+
   localStorage.setItem(LANG_KEY, lang);
 }
 
@@ -100,6 +108,96 @@ function applyBranding() {
   if (principal && branding.principal) principal.src = branding.principal;
 }
 
+function getGeniusReply(text) {
+  const lang = localStorage.getItem(LANG_KEY) || 'hi';
+  const q = text.toLowerCase();
+  const replies = {
+    hi: {
+      admission: 'एडमिशन जानकारी के लिए स्कूल ऑफिस या Contact पेज का उपयोग करें। आवश्यक दस्तावेज: जन्म तिथि प्रमाण, आधार (वैकल्पिक), और पिछली कक्षा का रिकॉर्ड।',
+      fee: 'फीस संबंधी जानकारी के लिए कृपया एडमिन/ऑफिस से संपर्क करें। Contact पेज में पता उपलब्ध है।',
+      notice: 'नोटिस देखने के लिए Notice पेज खोलें। वहां परीक्षा, छुट्टी और सामान्य सूचना दिखाई जाती है।',
+      meeting: 'बैठकों की जानकारी Meetings पेज में मिल जाएगी।',
+      certificate: 'Bonafide, Character और Transfer Certificate एडमिन पैनल से generate किए जा सकते हैं।',
+      gallery: 'Annual function और celebration की photos/videos Gallery page में देखें।',
+      contact: 'स्कूल पता: Gopalpur, Kanpur Nagar, Uttar Pradesh. अधिक जानकारी के लिए Contact पेज खोलें।',
+      default: 'मैं Genius आपकी मदद के लिए हूँ। आप admission, fees, notices, meetings, certificates या contact के बारे में पूछ सकते हैं।'
+    },
+    en: {
+      admission: 'For admission details, please use the school office or Contact page. Common documents: DOB proof, Aadhaar (optional), and previous class record.',
+      fee: 'For fee information, please contact the school office/admin. Address is available on Contact page.',
+      notice: 'Please open the Notice page for exam, holiday and general announcements.',
+      meeting: 'Upcoming meetings are available on the Meetings page.',
+      certificate: 'Bonafide, Character and Transfer Certificates can be generated from the Admin panel.',
+      gallery: 'Visit the Gallery page to view annual function and celebration photos/videos.',
+      contact: 'School address: Gopalpur, Kanpur Nagar, Uttar Pradesh. Please open Contact page for details.',
+      default: 'I am Genius, here to help. Ask me about admissions, fees, notices, meetings, certificates, or contact details.'
+    }
+  };
+
+  const pack = replies[lang] || replies.hi;
+  if (q.includes('admission') || q.includes('एडमिशन') || q.includes('प्रवेश')) return pack.admission;
+  if (q.includes('fee') || q.includes('fees') || q.includes('फीस')) return pack.fee;
+  if (q.includes('notice') || q.includes('सूचना')) return pack.notice;
+  if (q.includes('meeting') || q.includes('बैठक')) return pack.meeting;
+  if (q.includes('certificate') || q.includes('प्रमाणपत्र')) return pack.certificate;
+  if (q.includes('gallery') || q.includes('annual') || q.includes('वार्षिक') || q.includes('function')) return pack.gallery;
+  if (q.includes('contact') || q.includes('address') || q.includes('संपर्क') || q.includes('पता')) return pack.contact;
+  return pack.default;
+}
+
+function appendGeniusMsg(text, who = 'bot') {
+  const box = document.getElementById('geniusMessages');
+  if (!box) return;
+  const row = document.createElement('div');
+  row.className = `genius-msg ${who}`;
+  row.textContent = text;
+  box.appendChild(row);
+  box.scrollTop = box.scrollHeight;
+}
+
+function initGeniusBot() {
+  const widget = document.createElement('div');
+  widget.id = 'geniusWidget';
+  widget.innerHTML = `
+    <button id="geniusToggle" class="genius-toggle" aria-label="Open Genius">🤖 Genius</button>
+    <div id="geniusPanel" class="genius-panel">
+      <div class="genius-header"><span id="geniusTitle">Genius AI Help</span><button id="geniusClose" type="button">✕</button></div>
+      <div id="geniusMessages" class="genius-messages"></div>
+      <form id="geniusForm" class="genius-form">
+        <input id="geniusInput" type="text" />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(widget);
+
+  const toggle = document.getElementById('geniusToggle');
+  const panel = document.getElementById('geniusPanel');
+  const close = document.getElementById('geniusClose');
+  const form = document.getElementById('geniusForm');
+  const input = document.getElementById('geniusInput');
+
+  toggle.addEventListener('click', () => {
+    panel.classList.toggle('open');
+    if (panel.classList.contains('open')) input.focus();
+  });
+  close.addEventListener('click', () => panel.classList.remove('open'));
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+    appendGeniusMsg(text, 'user');
+    appendGeniusMsg(getGeniusReply(text), 'bot');
+    input.value = '';
+  });
+
+  const lang = localStorage.getItem(LANG_KEY) || 'hi';
+  const pack = I18N[lang] || I18N.hi;
+  appendGeniusMsg(pack.genius_welcome, 'bot');
+  applyLanguage(lang);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const lang = localStorage.getItem(LANG_KEY) || 'hi';
   applyLanguage(lang);
@@ -107,4 +205,5 @@ document.addEventListener('DOMContentLoaded', () => {
   if (select) select.addEventListener('change', (e) => applyLanguage(e.target.value));
   activeNav();
   applyBranding();
+  initGeniusBot();
 });
