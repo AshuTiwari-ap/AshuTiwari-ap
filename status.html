@@ -1,106 +1,72 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en-IN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Check Status | Ashu Cyber Cafe</title>
+  <meta name="description" content="Track Balaji Refiners mustard oil orders with processing, shipped and delivered status steps." />
+  <title>Order Tracking | Balaji Refiners</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-bar">
-      <div class="logo">
-        <span class="logo-icon"><i class="fa-solid fa-landmark"></i></span>
-        <div>
-          <h1>Ashu Cyber Cafe</h1>
-          <p>& Jan Seva Kendra</p>
-        </div>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="apply.html">Apply Online</a>
-        <a class="active" href="status.html">Check Status</a>
-        <a href="admin.html">Admin Login</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+<header class="site-header">
+  <div class="container nav-bar">
+    <a class="logo" href="index.html" aria-label="Balaji Refiners home">
+      <span class="logo-mark"><i class="fa-solid fa-droplet"></i></span>
+      <div><h1>Balaji Refiners</h1><p>Shudh Sarso Ka Tel</p></div>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="" href="index.html">Home</a>
+      <a class="" href="services.html">About Us</a>
+      <a class="" href="apply.html">Products</a>
+      <a class="active" href="status.html">Order Tracking</a>
+      <a class="" href="dashboard.html">Customer Dashboard</a>
+      <a class="" href="admin.html">Admin</a>
+      <a class="" href="contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+<main>
+  <section class="page-hero"><div class="container"><span class="kicker">Order Tracking</span><h2>Track your mustard oil delivery live.</h2><p>Enter your Order ID to view processing, shipped, and delivered progress.</p></div></section>
+  <section class="section"><div class="container form-grid"><div class="info-card reveal"><h3>Order ID Search</h3><p class="muted">Try sample Order ID <strong>BRORD-24018</strong> or enter your own invoice/order number.</p><form id="trackingForm" class="styled-form"><div class="form-row"><label for="orderId">Order ID</label><input id="orderId" placeholder="BRORD-24018" /></div><button class="btn primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Track Order</button></form></div><div id="trackingResult" class="info-card reveal" hidden><h3>Live order status: <span id="trackingStatus">Processing</span></h3><p>Order <strong id="trackingOrder">BRORD-24018</strong> is moving through the delivery workflow.</p><div class="status-steps"><div class="status-step active"><span><i class="fa-solid fa-receipt"></i></span><div><h4>Order Placed</h4><p>Order and GST invoice request received.</p></div></div><div class="status-step"><span><i class="fa-solid fa-box-open"></i></span><div><h4>Processing Status</h4><p>Products are being packed and quality checked.</p></div></div><div class="status-step"><span><i class="fa-solid fa-truck-fast"></i></span><div><h4>Shipped Status</h4><p>Shipment is assigned to delivery partner.</p></div></div><div class="status-step"><span><i class="fa-solid fa-circle-check"></i></span><div><h4>Delivered Status</h4><p>Delivery completed and invoice available.</p></div></div></div></div></div></section>
+  <section class="section soft"><div class="container"><div class="section-header reveal"><span class="badge">Delivery Reports</span><h2>Professional delivery visibility.</h2><p>The admin dashboard also includes pending orders, completed deliveries, cancelled orders, and exportable reports.</p></div><div class="grid cols-4"><article class="metric-card reveal"><i class="fa-solid fa-hourglass-half"></i><h3>Pending</h3><p>14 orders</p></article><article class="metric-card reveal"><i class="fa-solid fa-box"></i><h3>Processing</h3><p>22 orders</p></article><article class="metric-card reveal"><i class="fa-solid fa-truck"></i><h3>Shipped</h3><p>18 orders</p></article><article class="metric-card reveal"><i class="fa-solid fa-check"></i><h3>Delivered</h3><p>120 orders</p></article></div></div></section>
+</main>
+<a class="cart-float" href="dashboard.html#checkout" aria-label="Cart"><i class="fa-solid fa-cart-shopping"></i><span data-cart-count>0</span></a>
+<a class="whatsapp-float" href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h3>Balaji Refiners - Shudh Sarso Ka Tel</h3>
+      <p>Premium edible mustard oil refined with classic Indian values, modern quality systems, and trusted distribution.</p>
     </div>
-  </header>
-
-  <section class="page-hero">
-    <div class="container">
-      <h2>Check Application Status</h2>
-      <p>Application ID enter karein aur status dekhein.</p>
+    <div>
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="contact.html#privacy">Privacy Policy</a></li>
+        <li><a href="contact.html#terms">Terms & Conditions</a></li>
+        <li><a href="contact.html#refund">Refund Policy</a></li>
+      </ul>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container status-grid">
-      <div class="info-card">
-        <h3>Track Your Application</h3>
-        <form id="statusForm" class="styled-form">
-          <div class="form-row">
-            <label for="statusId">Application ID</label>
-            <input type="text" id="statusId" name="statusId" placeholder="APPXXXXXX" required />
-          </div>
-          <button type="submit" class="btn primary">Check Status</button>
-        </form>
-        <div class="alert" id="statusResult" hidden>
-          <h4>Status</h4>
-          <p id="statusMessage"></p>
-        </div>
-      </div>
-      <div>
-        <h3>Status Guide</h3>
-        <ul class="status-list">
-          <li><span class="status-pill pending">Pending</span> Verification in progress</li>
-          <li><span class="status-pill approved">Approved</span> Application approved</li>
-          <li><span class="status-pill rejected">Rejected</span> Correction needed</li>
-          <li><span class="status-pill completed">Completed</span> Document ready</li>
-        </ul>
-        <p>Any help chahiye? Call ya WhatsApp par contact karein.</p>
-      </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="apply.html">Shop Products</a></li>
+        <li><a href="status.html">Track Order</a></li>
+        <li><a href="admin.html">Admin Login</a></li>
+      </ul>
     </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <h3>Ashu Cyber Cafe &amp; Jan Seva Kendra</h3>
-        <p>Digital services that empower every citizen.</p>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="apply.html">Apply Online</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p><i class="fa-solid fa-location-dot"></i> Your Address, City</p>
-        <p><i class="fa-solid fa-phone"></i> +91 99999 99999</p>
-        <p><i class="fa-solid fa-envelope"></i> ashucafe@email.com</p>
-      </div>
+    <div>
+      <h4>Contact</h4>
+      <p><i class="fa-solid fa-phone"></i> +91-XXXXXXXXXX</p>
+      <p><i class="fa-solid fa-envelope"></i> care@balajirefiners.example</p>
+      <p><i class="fa-brands fa-facebook"></i> Facebook · Instagram · YouTube</p>
     </div>
-    <p class="copyright">© 2024 Ashu Cyber Cafe. All rights reserved.</p>
-  </footer>
-
-  <a class="floating-btn whatsapp" href="https://wa.me/919999999999" target="_blank" rel="noreferrer">
-    <i class="fa-brands fa-whatsapp"></i>
-    WhatsApp
-  </a>
-  <a class="floating-btn call" href="tel:+919999999999">
-    <i class="fa-solid fa-phone"></i>
-    Call Now
-  </a>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  </div>
+  <div class="footer-bottom">© 2026 Balaji Refiners. All rights reserved. GST invoices available on every eligible order.</div>
+</footer>
+<script src="script.js"></script>
+</body></html>

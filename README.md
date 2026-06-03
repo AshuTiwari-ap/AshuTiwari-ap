@@ -1,60 +1,44 @@
-# Ashu Cyber Cafe & Jan Seva Kendra Website
+# Balaji Refiners - Shudh Sarso Ka Tel
 
-Yeh project ek complete responsive website hai jo cyber cafe / Jan Seva Kendra ke liye banayi gayi hai. Isme apply online system, status tracking, aur admin panel included hai.
+Premium, classic, responsive e-commerce website prototype for an edible mustard oil company.
 
-## Features
-- Fully responsive (mobile + desktop)
-- Modern, colorful, professional UI
-- Home, Services, Apply Online, Status, Admin Login, Contact pages
-- Application ID generation + status tracking
-- Admin dashboard (total apps, new apps)
-- Status update & delete with password confirmation
-- 3 wrong attempts par 10-minute lock
-- WhatsApp + Call floating buttons
+## Pages
+- `index.html` — Home page with hero banner, promotional banner, company intro, featured products, why choose us, reviews, contact CTA.
+- `services.html` — About Us page with company history, mission, vision, manufacturing process, and quality assurance.
+- `apply.html` — Products page with categories, product grid, gallery, product details, prices, stock, cart, and buy-now actions.
+- `status.html` — Order tracking page with Order ID search and live processing/shipped/delivered steps.
+- `contact.html` — Contact page with form, address, mobile, WhatsApp, email, Google Maps, and policy sections.
+- `dashboard.html` — Customer dashboard with signup/login, profile, order history, saved addresses, wishlist, checkout, invoices.
+- `admin.html` — Secure admin dashboard prototype with role-based login, analytics cards, charts, company settings, products, orders, customers, content management, and exports.
 
-## Tech Stack
-- HTML, CSS, JavaScript (LocalStorage based)
+## Demo Credentials
+- Username: `admin`
+- Password: `admin123`
 
-## Step-by-step Setup (Beginner Friendly)
+## Implemented Frontend Features
+- Premium Indian brand look using dark green, gold, white, and black.
+- Responsive mobile, tablet, and desktop layout.
+- Smooth reveal animations and elegant UI cards.
+- SEO-friendly titles, descriptions, semantic sections, and image alt text.
+- LocalStorage cart and customer dashboard demo state.
+- SessionStorage admin session demo state.
+- CSV export and print/PDF export placeholders.
 
-### 1) Files ko download karein
-- Is repo ko zip me download karein ya git clone karein.
+## Production Roadmap
+The current repository is a static HTML/CSS/JavaScript prototype. For production, connect these screens to:
+- Frontend: Next.js + Tailwind CSS
+- Backend: Node.js + Express
+- Database: MySQL
+- Authentication: JWT with role-based access control
+- Image Storage: Cloudinary
+- Payment Gateway: Razorpay + UPI + COD
+- GST invoice generation and report exports
 
-### 2) Local run (Laptop par)
-1. Folder open karein.
-2. `index.html` par double click karein.
-3. Website browser me open ho jayegi.
+## Run Locally
+Open `index.html` directly in a browser, or run a simple static server:
 
-> Tip: Best experience ke liye VS Code me **Live Server** extension use karein.
-
-### 3) Free Hosting (Netlify / GitHub Pages)
-- Netlify:
-  1. https://www.netlify.com par sign up karein
-  2. "Add new site" -> "Deploy manually" -> folder drag & drop
-- GitHub Pages:
-  1. GitHub repo me code push karein
-  2. Repo Settings -> Pages -> Deploy from branch -> main
-
-## Admin Panel Instructions
-- Admin Login page: `admin.html`
-- Default password: `admin123`
-- Password change option available hai.
-
-> Note: Admin login aur applications LocalStorage me save hote hain, isliye different device/browser par data share nahi hota. Agar server-based database chahiye to PHP/MySQL integrate kiya ja sakta hai.
-
-## Customize Tips
-- Phone number, email, address change karne ke liye HTML files me content update karein.
-- Map location update ke liye `contact.html` me Google Maps link replace karein.
-
-## Folder Structure
+```bash
+python3 -m http.server 8000
 ```
-index.html
-services.html
-apply.html
-status.html
-admin.html
-contact.html
-styles.css
-script.js
-admin.js
-```
+
+Then visit `http://localhost:8000`.

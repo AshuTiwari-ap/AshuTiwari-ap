@@ -2,103 +2,181 @@ const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 
 if (navToggle && navLinks) {
-  navToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
-  });
+  navToggle.addEventListener("click", () => navLinks.classList.toggle("show"));
 }
 
-const slider = document.querySelector(".slider");
-const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".dot");
-let currentSlide = 0;
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add("visible");
+    });
+  },
+  { threshold: 0.12 }
+);
 
-const showSlide = (index) => {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle("active", i === index);
+document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
+
+const products = [
+  {
+    id: "BR-1L",
+    name: "Classic Kachi Ghani Mustard Oil",
+    category: "Bottle",
+    size: "1 Litre",
+    price: 185,
+    stock: 124,
+    image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    id: "BR-2L",
+    name: "Premium Sarso Tel Family Pack",
+    category: "Bottle",
+    size: "2 Litre",
+    price: 355,
+    stock: 68,
+    image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    id: "BR-5L",
+    name: "Shudh Sarso Ka Tel Jar",
+    category: "Jar",
+    size: "5 Litre",
+    price: 850,
+    stock: 18,
+    image: "https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    id: "BR-15L",
+    name: "Commercial Mustard Oil Tin",
+    category: "Tin",
+    size: "15 Litre",
+    price: 2480,
+    stock: 9,
+    image: "https://images.unsplash.com/photo-1608797178974-15b35a64ede9?auto=format&fit=crop&w=900&q=80",
+  },
+];
+
+const getStored = (key, fallback) => JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback));
+const setStored = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+
+const getCart = () => getStored("balajiCart", []);
+const setCart = (items) => setStored("balajiCart", items);
+
+const updateCartCount = () => {
+  const count = getCart().reduce((sum, item) => sum + item.qty, 0);
+  document.querySelectorAll("[data-cart-count]").forEach((node) => {
+    node.textContent = count;
   });
-  dots.forEach((dot, i) => {
-    dot.classList.toggle("active", i === index);
-  });
-  currentSlide = index;
 };
 
-if (slider && slides.length > 0) {
-  setInterval(() => {
-    const nextIndex = (currentSlide + 1) % slides.length;
-    showSlide(nextIndex);
-  }, 4500);
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => showSlide(index));
-  });
-}
-
-const getApplications = () => {
-  const stored = localStorage.getItem("applications");
-  return stored ? JSON.parse(stored) : [];
+const renderProducts = () => {
+  const grid = document.querySelector("#productGrid");
+  if (!grid) return;
+  grid.innerHTML = products
+    .map(
+      (product) => `
+        <article class="product-card reveal" data-category="${product.category}">
+          <img src="${product.image}" alt="${product.name}" />
+          <div class="product-body">
+            <div class="product-meta"><span>${product.category}</span><span>${product.size}</span></div>
+            <h3>${product.name}</h3>
+            <p>Cold-pressed aroma, lab-tested purity, sealed for long-lasting freshness.</p>
+            <div class="product-meta"><span class="price">₹${product.price}</span><span class="stock ${product.stock < 20 ? "low" : ""}">${product.stock < 20 ? "Low stock" : "In stock"}</span></div>
+            <div class="actions">
+              <button class="btn primary add-cart" data-id="${product.id}"><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
+              <button class="btn ghost buy-now" data-id="${product.id}">Buy now</button>
+            </div>
+          </div>
+        </article>`
+    )
+    .join("");
+  document.querySelectorAll("#productGrid .reveal").forEach((item) => revealObserver.observe(item));
 };
 
-const saveApplications = (apps) => {
-  localStorage.setItem("applications", JSON.stringify(apps));
+const addToCart = (productId) => {
+  const product = products.find((item) => item.id === productId);
+  if (!product) return;
+  const cart = getCart();
+  const found = cart.find((item) => item.id === productId);
+  if (found) found.qty += 1;
+  else cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
+  setCart(cart);
+  updateCartCount();
+  alert(`${product.name} cart me add ho gaya.`);
 };
 
-const applyForm = document.querySelector("#applyForm");
-const applySuccess = document.querySelector("#applySuccess");
-const applicationIdField = document.querySelector("#applicationId");
+document.addEventListener("click", (event) => {
+  const addButton = event.target.closest(".add-cart");
+  const buyButton = event.target.closest(".buy-now");
+  const filterButton = event.target.closest("[data-filter]");
 
-if (applyForm) {
-  applyForm.addEventListener("submit", (event) => {
+  if (addButton) addToCart(addButton.dataset.id);
+  if (buyButton) {
+    addToCart(buyButton.dataset.id);
+    location.href = "dashboard.html#checkout";
+  }
+  if (filterButton) {
+    const category = filterButton.dataset.filter;
+    document.querySelectorAll("[data-filter]").forEach((button) => button.classList.remove("active"));
+    filterButton.classList.add("active");
+    document.querySelectorAll(".product-card").forEach((card) => {
+      card.style.display = category === "All" || card.dataset.category === category ? "block" : "none";
+    });
+  }
+});
+
+const trackingForm = document.querySelector("#trackingForm");
+if (trackingForm) {
+  trackingForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const formData = new FormData(applyForm);
-    const newApplication = {
-      id: `APP${Date.now().toString().slice(-6)}${Math.floor(Math.random() * 90 + 10)}`,
-      name: formData.get("name"),
-      mobile: formData.get("mobile"),
-      service: formData.get("service"),
-      address: formData.get("address"),
-      status: "Pending",
-      createdAt: new Date().toISOString(),
-    };
-    const applications = getApplications();
-    applications.unshift(newApplication);
-    saveApplications(applications);
-
-    if (applicationIdField && applySuccess) {
-      applicationIdField.textContent = newApplication.id;
-      applySuccess.hidden = false;
-    }
-
-    applyForm.reset();
+    const id = document.querySelector("#orderId").value.trim() || "BRORD-24018";
+    const statuses = ["Processing", "Shipped", "Delivered"];
+    const activeIndex = id.length % statuses.length;
+    const result = document.querySelector("#trackingResult");
+    document.querySelector("#trackingOrder").textContent = id;
+    document.querySelector("#trackingStatus").textContent = statuses[activeIndex];
+    document.querySelectorAll(".status-step").forEach((step, index) => {
+      step.classList.toggle("active", index <= activeIndex + 1);
+    });
+    result.hidden = false;
   });
 }
 
-const statusForm = document.querySelector("#statusForm");
-const statusResult = document.querySelector("#statusResult");
-const statusMessage = document.querySelector("#statusMessage");
-
-if (statusForm) {
-  statusForm.addEventListener("submit", (event) => {
+const contactForm = document.querySelector("#contactForm");
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const statusId = document.querySelector("#statusId").value.trim();
-    const applications = getApplications();
-    const found = applications.find((app) => app.id === statusId);
-
-    if (statusResult && statusMessage) {
-      statusResult.hidden = false;
-      if (found) {
-        statusMessage.textContent = `${found.name} ki application status: ${found.status}`;
-      } else {
-        statusMessage.textContent = "Application ID nahi mila. Please sahi ID enter karein.";
-      }
-    }
+    document.querySelector("#contactSuccess").hidden = false;
+    contactForm.reset();
   });
 }
 
-const adminSession = localStorage.getItem("adminSession");
-const adminPanel = document.querySelector("#adminPanel");
-const adminLoginCard = document.querySelector("#adminLoginCard");
-
-if (adminSession === "active" && adminPanel && adminLoginCard) {
-  adminPanel.hidden = false;
-  adminLoginCard.hidden = true;
+const dashboardForm = document.querySelector("#dashboardLogin");
+if (dashboardForm) {
+  dashboardForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const name = document.querySelector("#customerName").value || "Balaji Customer";
+    localStorage.setItem("balajiCustomer", name);
+    document.querySelector("#profileName").textContent = name;
+    document.querySelector("#dashboardArea").hidden = false;
+  });
+  const storedName = localStorage.getItem("balajiCustomer");
+  if (storedName) {
+    document.querySelector("#profileName").textContent = storedName;
+    document.querySelector("#dashboardArea").hidden = false;
+  }
 }
+
+const renderCartSummary = () => {
+  const cartList = document.querySelector("#cartSummary");
+  if (!cartList) return;
+  const cart = getCart();
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  cartList.innerHTML = cart.length
+    ? cart.map((item) => `<li>${item.name} × ${item.qty} <strong>₹${item.price * item.qty}</strong></li>`).join("")
+    : "<li>No items in cart yet.</li>";
+  document.querySelector("#cartTotal").textContent = `₹${total}`;
+};
+
+renderProducts();
+updateCartCount();
+renderCartSummary();
