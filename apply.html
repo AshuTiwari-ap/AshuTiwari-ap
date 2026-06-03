@@ -1,138 +1,73 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en-IN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apply Online | Ashu Cyber Cafe</title>
+  <meta name="description" content="Shop Balaji Refiners mustard oil products with categories, product gallery, price, stock status, cart and buy now actions." />
+  <title>Products | Balaji Refiners Mustard Oil</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-bar">
-      <div class="logo">
-        <span class="logo-icon"><i class="fa-solid fa-landmark"></i></span>
-        <div>
-          <h1>Ashu Cyber Cafe</h1>
-          <p>& Jan Seva Kendra</p>
-        </div>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a class="active" href="apply.html">Apply Online</a>
-        <a href="status.html">Check Status</a>
-        <a href="admin.html">Admin Login</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+<header class="site-header">
+  <div class="container nav-bar">
+    <a class="logo" href="index.html" aria-label="Balaji Refiners home">
+      <span class="logo-mark"><i class="fa-solid fa-droplet"></i></span>
+      <div><h1>Balaji Refiners</h1><p>Shudh Sarso Ka Tel</p></div>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="" href="index.html">Home</a>
+      <a class="" href="services.html">About Us</a>
+      <a class="active" href="apply.html">Products</a>
+      <a class="" href="status.html">Order Tracking</a>
+      <a class="" href="dashboard.html">Customer Dashboard</a>
+      <a class="" href="admin.html">Admin</a>
+      <a class="" href="contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+<main>
+  <section class="page-hero"><div class="container"><span class="kicker">Products</span><h2>Shop Balaji Refiners mustard oil.</h2><p>Browse retail bottles, family jars, and commercial tins with live cart actions and stock status.</p></div></section>
+  <section class="section"><div class="container"><div class="product-toolbar"><div class="chip-list" aria-label="Product categories"><button class="chip tab-button active" data-filter="All">All</button><button class="chip tab-button" data-filter="Bottle">Bottle</button><button class="chip tab-button" data-filter="Jar">Jar</button><button class="chip tab-button" data-filter="Tin">Tin</button></div><a class="btn dark" href="dashboard.html#checkout"><i class="fa-solid fa-cart-shopping"></i> Checkout (<span data-cart-count>0</span>)</a></div><div class="grid cols-4" id="productGrid"></div></div></section>
+  <section class="section soft"><div class="container"><div class="section-header reveal"><span class="badge">Product Image Gallery</span><h2>Premium Indian shelf presence.</h2><p>Gallery placeholders show how brand assets, banners, and multiple product photos will look after admin uploads.</p></div><div class="grid cols-3 gallery"><img class="reveal" src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=900&q=80" alt="Mustard oil bottle gallery" /><img class="reveal" src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80" alt="Edible oil pouring gallery" /><img class="reveal" src="https://images.unsplash.com/photo-1608797178974-15b35a64ede9?auto=format&fit=crop&w=900&q=80" alt="Mustard oil product detail gallery" /></div></div></section>
+  <section class="section"><div class="container split"><div class="reveal"><span class="badge">Product Details Page Preview</span><h2>Classic Kachi Ghani Mustard Oil - 1 Litre</h2><p>MRP ₹185 · In stock · Cold-pressed aroma · Secure seal · GST invoice eligible.</p><ul class="check-list"><li><i class="fa-solid fa-circle-check"></i> Best for sabzi, achar, tadka, and traditional recipes.</li><li><i class="fa-solid fa-circle-check"></i> COD, UPI, and Razorpay-ready checkout.</li><li><i class="fa-solid fa-circle-check"></i> Coupons and shipping charges supported in admin workflow.</li></ul><div class="actions"><button class="btn primary add-cart" data-id="BR-1L">Add to cart</button><button class="btn ghost buy-now" data-id="BR-1L">Buy now</button></div></div><img class="reveal" src="https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?auto=format&fit=crop&w=1000&q=80" alt="Detailed mustard oil product" /></div></section>
+</main>
+<a class="cart-float" href="dashboard.html#checkout" aria-label="Cart"><i class="fa-solid fa-cart-shopping"></i><span data-cart-count>0</span></a>
+<a class="whatsapp-float" href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h3>Balaji Refiners - Shudh Sarso Ka Tel</h3>
+      <p>Premium edible mustard oil refined with classic Indian values, modern quality systems, and trusted distribution.</p>
     </div>
-  </header>
-
-  <section class="page-hero">
-    <div class="container">
-      <h2>Apply Online</h2>
-      <p>Form fill karein aur application ID paayein.</p>
+    <div>
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="contact.html#privacy">Privacy Policy</a></li>
+        <li><a href="contact.html#terms">Terms & Conditions</a></li>
+        <li><a href="contact.html#refund">Refund Policy</a></li>
+      </ul>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container form-grid">
-      <div>
-        <h3>Application Form</h3>
-        <p>Saari details sahi se bharें. Submit ke baad application ID generate hogi.</p>
-        <form id="applyForm" class="styled-form">
-          <div class="form-row">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" required />
-          </div>
-          <div class="form-row">
-            <label for="mobile">Mobile Number</label>
-            <input type="tel" id="mobile" name="mobile" required />
-          </div>
-          <div class="form-row">
-            <label for="service">Select Service</label>
-            <select id="service" name="service" required>
-              <option value="">Choose Service</option>
-              <option>Aadhaar Card</option>
-              <option>PAN Card</option>
-              <option>Ayushman Card</option>
-              <option>Voter ID</option>
-              <option>E-Shram Card</option>
-              <option>Income Certificate</option>
-              <option>Caste Certificate</option>
-              <option>Residence Certificate</option>
-              <option>Passport</option>
-              <option>Driving License</option>
-              <option>Online Form Filling</option>
-              <option>Printing / Scanning / Lamination</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label for="address">Address</label>
-            <textarea id="address" name="address" rows="3" required></textarea>
-          </div>
-          <div class="form-row">
-            <label for="document">Document Upload (optional)</label>
-            <input type="file" id="document" name="document" accept=".pdf,.jpg,.png" />
-            <small>Note: Free hosting me file upload save nahi hota. Admin ke liye offline record rahega.</small>
-          </div>
-          <button type="submit" class="btn primary">Submit Application</button>
-        </form>
-      </div>
-      <div class="info-card">
-        <h3>Process Steps</h3>
-        <ol>
-          <li>Form submit karein</li>
-          <li>Application ID receive karein</li>
-          <li>Status check page par ID daalein</li>
-          <li>Admin processing ke baad status update</li>
-        </ol>
-        <div class="alert" id="applySuccess" hidden>
-          <h4>Application Submitted!</h4>
-          <p>Your Application ID: <strong id="applicationId"></strong></p>
-          <p>Status check ke liye ID copy kar lein.</p>
-        </div>
-      </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="apply.html">Shop Products</a></li>
+        <li><a href="status.html">Track Order</a></li>
+        <li><a href="admin.html">Admin Login</a></li>
+      </ul>
     </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <h3>Ashu Cyber Cafe &amp; Jan Seva Kendra</h3>
-        <p>Digital services that empower every citizen.</p>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="status.html">Check Status</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p><i class="fa-solid fa-location-dot"></i> Your Address, City</p>
-        <p><i class="fa-solid fa-phone"></i> +91 99999 99999</p>
-        <p><i class="fa-solid fa-envelope"></i> ashucafe@email.com</p>
-      </div>
+    <div>
+      <h4>Contact</h4>
+      <p><i class="fa-solid fa-phone"></i> +91-XXXXXXXXXX</p>
+      <p><i class="fa-solid fa-envelope"></i> care@balajirefiners.example</p>
+      <p><i class="fa-brands fa-facebook"></i> Facebook · Instagram · YouTube</p>
     </div>
-    <p class="copyright">© 2024 Ashu Cyber Cafe. All rights reserved.</p>
-  </footer>
-
-  <a class="floating-btn whatsapp" href="https://wa.me/919999999999" target="_blank" rel="noreferrer">
-    <i class="fa-brands fa-whatsapp"></i>
-    WhatsApp
-  </a>
-  <a class="floating-btn call" href="tel:+919999999999">
-    <i class="fa-solid fa-phone"></i>
-    Call Now
-  </a>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  </div>
+  <div class="footer-bottom">© 2026 Balaji Refiners. All rights reserved. GST invoices available on every eligible order.</div>
+</footer>
+<script src="script.js"></script>
+</body></html>

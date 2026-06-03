@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Customer signup, login, profile management, order history, saved addresses, wishlist, cart checkout and invoice downloads." />
+  <title>Customer Dashboard | Balaji Refiners</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-bar">
+    <a class="logo" href="index.html" aria-label="Balaji Refiners home">
+      <span class="logo-mark"><i class="fa-solid fa-droplet"></i></span>
+      <div><h1>Balaji Refiners</h1><p>Shudh Sarso Ka Tel</p></div>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="" href="index.html">Home</a>
+      <a class="" href="services.html">About Us</a>
+      <a class="" href="apply.html">Products</a>
+      <a class="" href="status.html">Order Tracking</a>
+      <a class="active" href="dashboard.html">Customer Dashboard</a>
+      <a class="" href="admin.html">Admin</a>
+      <a class="" href="contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+<main>
+  <section class="page-hero"><div class="container"><span class="kicker">Customer Dashboard</span><h2>Signup, login, checkout, and manage orders.</h2><p>A polished customer area for profiles, order history, addresses, wishlist, invoices, COD, UPI, and Razorpay-ready payments.</p></div></section>
+  <section class="section"><div class="container dashboard-layout"><div class="info-card reveal"><h3>Customer Signup / Login</h3><form id="dashboardLogin" class="styled-form"><div class="form-row"><label for="customerName">Name</label><input id="customerName" placeholder="Your name" required /></div><div class="form-row"><label for="customerMobile">Mobile or Email</label><input id="customerMobile" placeholder="Mobile / Email" required /></div><div class="form-row"><label for="customerPassword">Password</label><input id="customerPassword" type="password" required /></div><button class="btn primary" type="submit">Login / Create Account</button><a class="muted" href="#forgot">Forgot password?</a></form></div><div class="dashboard-panel reveal" id="dashboardArea" hidden><h3>Welcome, <span id="profileName">Balaji Customer</span></h3><div class="grid cols-2"><article class="card"><h4>Profile Management</h4><p>Update name, mobile, email, and communication preferences.</p></article><article class="card"><h4>Saved Addresses</h4><p>Home: Main Road, India · Add more delivery addresses.</p></article><article class="card"><h4>Wishlist</h4><p>Classic Kachi Ghani Mustard Oil · 5L Jar.</p></article><article class="card"><h4>Forgot Password</h4><p id="forgot">OTP/password reset flow placeholder for backend integration.</p></article></div></div></div></section>
+  <section class="section soft" id="checkout"><div class="container form-grid"><div class="info-card reveal"><h3>Shopping Cart & Secure Checkout</h3><ul id="cartSummary" class="check-list"></ul><p>Total: <strong id="cartTotal">₹0</strong></p><form class="styled-form"><div class="form-row"><label>Payment Method</label><select><option>Cash on Delivery (COD)</option><option>UPI Payment</option><option>Razorpay Integration</option></select></div><div class="form-row"><label>Coupon Code</label><input placeholder="BALAJI10" /></div><button class="btn primary" type="button">Place Secure Order</button></form></div><div class="info-card reveal"><h3>Order History & Invoice Download</h3><div class="table-wrapper"><table><thead><tr><th>Order</th><th>Status</th><th>Total</th><th>Invoice</th></tr></thead><tbody><tr><td>BRORD-24018</td><td>Delivered</td><td>₹1,035</td><td><button class="btn ghost" type="button">Download PDF</button></td></tr><tr><td>BRORD-24022</td><td>Processing</td><td>₹355</td><td><button class="btn ghost" type="button">GST Invoice</button></td></tr></tbody></table></div></div></div></section>
+</main>
+<a class="cart-float" href="dashboard.html#checkout" aria-label="Cart"><i class="fa-solid fa-cart-shopping"></i><span data-cart-count>0</span></a>
+<a class="whatsapp-float" href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h3>Balaji Refiners - Shudh Sarso Ka Tel</h3>
+      <p>Premium edible mustard oil refined with classic Indian values, modern quality systems, and trusted distribution.</p>
+    </div>
+    <div>
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="contact.html#privacy">Privacy Policy</a></li>
+        <li><a href="contact.html#terms">Terms & Conditions</a></li>
+        <li><a href="contact.html#refund">Refund Policy</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="apply.html">Shop Products</a></li>
+        <li><a href="status.html">Track Order</a></li>
+        <li><a href="admin.html">Admin Login</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p><i class="fa-solid fa-phone"></i> +91-XXXXXXXXXX</p>
+      <p><i class="fa-solid fa-envelope"></i> care@balajirefiners.example</p>
+      <p><i class="fa-brands fa-facebook"></i> Facebook · Instagram · YouTube</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Balaji Refiners. All rights reserved. GST invoices available on every eligible order.</div>
+</footer>
+<script src="script.js"></script>
+</body></html>
