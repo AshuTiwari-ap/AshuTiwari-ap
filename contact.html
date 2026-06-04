@@ -1,99 +1,72 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en-IN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us | Ashu Cyber Cafe</title>
+  <meta name="description" content="Contact Balaji Refiners by form, mobile, WhatsApp, email and Google Maps for mustard oil sales and support." />
+  <title>Contact Balaji Refiners | WhatsApp, Email & Maps</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-bar">
-      <div class="logo">
-        <span class="logo-icon"><i class="fa-solid fa-landmark"></i></span>
-        <div>
-          <h1>Ashu Cyber Cafe</h1>
-          <p>& Jan Seva Kendra</p>
-        </div>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="apply.html">Apply Online</a>
-        <a href="status.html">Check Status</a>
-        <a href="admin.html">Admin Login</a>
-        <a class="active" href="contact.html">Contact</a>
-      </nav>
-      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+<header class="site-header">
+  <div class="container nav-bar">
+    <a class="logo" href="index.html" aria-label="Balaji Refiners home">
+      <span class="logo-mark"><i class="fa-solid fa-droplet"></i></span>
+      <div><h1>Balaji Refiners</h1><p>Shudh Sarso Ka Tel</p></div>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="" href="index.html">Home</a>
+      <a class="" href="services.html">About Us</a>
+      <a class="" href="apply.html">Products</a>
+      <a class="" href="status.html">Order Tracking</a>
+      <a class="" href="dashboard.html">Customer Dashboard</a>
+      <a class="" href="admin.html">Admin</a>
+      <a class="active" href="contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+<main>
+  <section class="page-hero"><div class="container"><span class="kicker">Contact</span><h2>Connect with Balaji Refiners.</h2><p>Sales, distributor enquiries, customer care, and order support are one message away.</p></div></section>
+  <section class="section"><div class="container form-grid"><div class="info-card reveal"><h3>Contact Form</h3><form id="contactForm" class="styled-form"><div class="form-row"><label for="name">Full Name</label><input id="name" required /></div><div class="form-row"><label for="mobile">Mobile Number</label><input id="mobile" required /></div><div class="form-row"><label for="email">Email</label><input id="email" type="email" /></div><div class="form-row"><label for="message">Message</label><textarea id="message" required></textarea></div><button class="btn primary" type="submit">Send Enquiry</button><p id="contactSuccess" class="muted" hidden>Thank you. Our team will contact you shortly.</p></form></div><div class="info-card reveal"><h3>Company Address</h3><p><i class="fa-solid fa-location-dot"></i> Balaji Refiners, Industrial Area, India</p><p><i class="fa-solid fa-phone"></i> +91-XXXXXXXXXX</p><p><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noreferrer">WhatsApp Support</a></p><p><i class="fa-solid fa-envelope"></i> care@balajirefiners.example</p><div style="border-radius:24px;overflow:hidden;border:1px solid var(--line);margin-top:18px"><iframe title="Google Maps integration" src="https://www.google.com/maps?q=India&output=embed" width="100%" height="280" style="border:0" loading="lazy"></iframe></div></div></div></section>
+  <section class="section soft"><div class="container grid cols-3"><article id="privacy" class="card reveal"><h3>Privacy Policy</h3><p>Customer data is used for order processing, support, invoices, and delivery communication.</p></article><article id="terms" class="card reveal"><h3>Terms & Conditions</h3><p>Prices, stock, coupons, delivery charges, and promotional offers are subject to confirmation at checkout.</p></article><article id="refund" class="card reveal"><h3>Refund Policy</h3><p>Refunds or replacements are handled for eligible damaged, incorrect, or undelivered orders after verification.</p></article></div></section>
+</main>
+<a class="cart-float" href="dashboard.html#checkout" aria-label="Cart"><i class="fa-solid fa-cart-shopping"></i><span data-cart-count>0</span></a>
+<a class="whatsapp-float" href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h3>Balaji Refiners - Shudh Sarso Ka Tel</h3>
+      <p>Premium edible mustard oil refined with classic Indian values, modern quality systems, and trusted distribution.</p>
     </div>
-  </header>
-
-  <section class="page-hero">
-    <div class="container">
-      <h2>Contact Us</h2>
-      <p>Visit karein ya call/WhatsApp par connect karein.</p>
+    <div>
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="contact.html#privacy">Privacy Policy</a></li>
+        <li><a href="contact.html#terms">Terms & Conditions</a></li>
+        <li><a href="contact.html#refund">Refund Policy</a></li>
+      </ul>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container contact-grid">
-      <div>
-        <h3>Office Details</h3>
-        <p><i class="fa-solid fa-location-dot"></i> Your Address, City, State</p>
-        <p><i class="fa-solid fa-phone"></i> +91 99999 99999</p>
-        <p><i class="fa-solid fa-envelope"></i> ashucafe@email.com</p>
-        <div class="contact-actions">
-          <a class="btn primary" href="https://wa.me/919999999999" target="_blank" rel="noreferrer">WhatsApp</a>
-          <a class="btn ghost" href="tel:+919999999999">Call Now</a>
-        </div>
-      </div>
-      <div class="map-card">
-        <iframe
-          title="Google Map"
-          src="https://maps.google.com/maps?q=New%20Delhi&t=&z=13&ie=UTF8&iwloc=&output=embed"
-          loading="lazy"
-        ></iframe>
-      </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="apply.html">Shop Products</a></li>
+        <li><a href="status.html">Track Order</a></li>
+        <li><a href="admin.html">Admin Login</a></li>
+      </ul>
     </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <h3>Ashu Cyber Cafe &amp; Jan Seva Kendra</h3>
-        <p>Digital services that empower every citizen.</p>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="apply.html">Apply Online</a></li>
-          <li><a href="status.html">Check Status</a></li>
-          <li><a href="services.html">Services</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p><i class="fa-solid fa-location-dot"></i> Your Address, City</p>
-        <p><i class="fa-solid fa-phone"></i> +91 99999 99999</p>
-        <p><i class="fa-solid fa-envelope"></i> ashucafe@email.com</p>
-      </div>
+    <div>
+      <h4>Contact</h4>
+      <p><i class="fa-solid fa-phone"></i> +91-XXXXXXXXXX</p>
+      <p><i class="fa-solid fa-envelope"></i> care@balajirefiners.example</p>
+      <p><i class="fa-brands fa-facebook"></i> Facebook · Instagram · YouTube</p>
     </div>
-    <p class="copyright">© 2024 Ashu Cyber Cafe. All rights reserved.</p>
-  </footer>
-
-  <a class="floating-btn whatsapp" href="https://wa.me/919999999999" target="_blank" rel="noreferrer">
-    <i class="fa-brands fa-whatsapp"></i>
-    WhatsApp
-  </a>
-  <a class="floating-btn call" href="tel:+919999999999">
-    <i class="fa-solid fa-phone"></i>
-    Call Now
-  </a>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  </div>
+  <div class="footer-bottom">© 2026 Balaji Refiners. All rights reserved. GST invoices available on every eligible order.</div>
+</footer>
+<script src="script.js"></script>
+</body></html>

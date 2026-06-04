@@ -1,166 +1,217 @@
-const loginForm = document.querySelector("#adminLoginForm");
-const loginHint = document.querySelector("#loginHint");
+const adminLoginForm = document.querySelector("#adminLoginForm");
 const adminPanel = document.querySelector("#adminPanel");
 const adminLoginCard = document.querySelector("#adminLoginCard");
-const applicationsTable = document.querySelector("#applicationsTable");
-const totalApplications = document.querySelector("#totalApplications");
-const newApplications = document.querySelector("#newApplications");
+const adminHint = document.querySelector("#adminHint");
 const logoutBtn = document.querySelector("#logoutBtn");
-const changePasswordForm = document.querySelector("#changePasswordForm");
+const adminUserLabel = document.querySelector("#adminUserLabel");
 
-const getApplications = () => {
-  const stored = localStorage.getItem("applications");
-  return stored ? JSON.parse(stored) : [];
+const ADMIN_API_BASE =
+  window.BALAJI_API_BASE ||
+  (window.location.port === "3000" ? "/api" : "http://localhost:3000/api");
+
+const defaultOrders = [
+  ["BRORD-24018", "Priya Sharma", "Delivered", "₹1,035", "UPI"],
+  ["BRORD-24022", "Manoj Traders", "Processing", "₹2,480", "COD"],
+  ["BRORD-24031", "Rakesh Kumar", "Shipped", "₹850", "Razorpay"],
+  ["BRORD-24037", "Neha Singh", "Pending", "₹355", "UPI"],
+];
+
+const defaultCustomers = [
+  ["CUST-101", "Priya Sharma", "4", "₹3,820", "Active"],
+  ["CUST-102", "Manoj Traders", "12", "₹28,900", "Wholesale"],
+  ["CUST-103", "Rakesh Kumar", "2", "₹1,205", "Active"],
+];
+
+const defaultProducts = [
+  ["BR-1L", "Classic Kachi Ghani Mustard Oil", "₹185", "124"],
+  ["BR-15L", "Commercial Mustard Oil Tin", "₹2,480", "9"],
+];
+
+const getAdminToken = () => sessionStorage.getItem("balajiAdminToken");
+
+const adminApiRequest = async (path, options = {}) => {
+  const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
+  const token = getAdminToken();
+  if (token) headers.Authorization = `Bearer ${token}`;
+
+  const response = await fetch(`${ADMIN_API_BASE}${path}`, { ...options, headers });
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ message: "API request failed" }));
+    throw new Error(error.message || "API request failed");
+  }
+  return response.json();
 };
 
-const saveApplications = (apps) => {
-  localStorage.setItem("applications", JSON.stringify(apps));
+const showAdminPanel = (username = "Super Admin") => {
+  if (!adminPanel || !adminLoginCard) return;
+  adminPanel.hidden = false;
+  adminLoginCard.hidden = true;
+  if (adminUserLabel) adminUserLabel.textContent = username;
+  loadAdminDatabaseTables();
 };
 
-const getAdminPassword = () => localStorage.getItem("adminPassword") || "admin123";
-const setAdminPassword = (password) => localStorage.setItem("adminPassword", password);
+const renderTable = (selector, rows) => {
+  const table = document.querySelector(selector);
+  if (!table) return;
+  table.innerHTML = rows.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}<td><button class="btn ghost" type="button">View</button></td></tr>`).join("");
+};
 
-const getLoginAttempts = () => Number(localStorage.getItem("adminAttempts") || 0);
-const setLoginAttempts = (value) => localStorage.setItem("adminAttempts", value);
-const getLockUntil = () => Number(localStorage.getItem("adminLockUntil") || 0);
-const setLockUntil = (value) => localStorage.setItem("adminLockUntil", value);
-
-const renderApplications = () => {
-  if (!applicationsTable) return;
-  const apps = getApplications();
-  applicationsTable.innerHTML = apps
+const renderProductTable = (rows) => {
+  const table = document.querySelector("#adminProductsTable");
+  if (!table) return;
+  table.innerHTML = rows
     .map(
-      (app) => `
-      <tr>
-        <td>${app.id}</td>
-        <td>${app.name}</td>
-        <td>${app.service}</td>
-        <td>${app.mobile}</td>
-        <td>
-          <select data-id="${app.id}" class="status-select">
-            ${["Pending", "Approved", "Rejected", "Completed"]
-              .map(
-                (status) =>
-                  `<option value="${status}" ${status === app.status ? "selected" : ""}>${status}</option>`
-              )
-              .join("")}
-          </select>
-        </td>
-        <td>
-          <button class="btn ghost delete-btn" data-id="${app.id}">Delete</button>
-        </td>
-      </tr>
-    `
+      (row) => `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td><td><button class="btn ghost" type="button">Edit</button> <button class="btn ghost" type="button">Delete</button></td></tr>`
     )
     .join("");
+};
 
-  if (totalApplications) totalApplications.textContent = apps.length;
-  if (newApplications) {
-    const fresh = apps.filter((app) => app.status === "Pending").length;
-    newApplications.textContent = fresh;
+const loadAdminDatabaseTables = async () => {
+  renderTable("#ordersTable", defaultOrders);
+  renderTable("#customersTable", defaultCustomers);
+  renderProductTable(defaultProducts);
+
+  try {
+    const [orders, customers, products] = await Promise.all([
+      adminApiRequest("/admin/orders"),
+      adminApiRequest("/admin/customers"),
+      adminApiRequest("/products"),
+    ]);
+
+    renderTable(
+      "#ordersTable",
+      orders.map((order) => [
+        order.order_id,
+        order.customer_name,
+        order.status,
+        `₹${Number(order.total_amount).toLocaleString("en-IN")}`,
+        order.payment_method,
+      ])
+    );
+
+    renderTable(
+      "#customersTable",
+      customers.map((customer) => [
+        `CUST-${customer.id}`,
+        customer.name,
+        customer.orders || 0,
+        `₹${Number(customer.revenue || 0).toLocaleString("en-IN")}`,
+        customer.mobile_email,
+      ])
+    );
+
+    renderProductTable(
+      products.map((product) => [
+        product.id,
+        product.name,
+        `₹${Number(product.price).toLocaleString("en-IN")}`,
+        product.stock,
+      ])
+    );
+  } catch (error) {
+    console.info("Admin database API unavailable; using demo dashboard data.", error.message);
   }
 };
 
-const setupAdminEvents = () => {
-  if (!applicationsTable) return;
-
-  applicationsTable.addEventListener("change", (event) => {
-    const target = event.target;
-    if (target.classList.contains("status-select")) {
-      const apps = getApplications();
-      const updated = apps.map((app) =>
-        app.id === target.dataset.id ? { ...app, status: target.value } : app
-      );
-      saveApplications(updated);
-      renderApplications();
-    }
-  });
-
-  applicationsTable.addEventListener("click", (event) => {
-    const target = event.target;
-    if (target.classList.contains("delete-btn")) {
-      const confirmPassword = prompt("Delete confirm karne ke liye admin password enter karein:");
-      if (confirmPassword === getAdminPassword()) {
-        const apps = getApplications();
-        const filtered = apps.filter((app) => app.id !== target.dataset.id);
-        saveApplications(filtered);
-        renderApplications();
-      } else if (confirmPassword) {
-        alert("Wrong password. Delete cancel.");
-      }
-    }
-  });
+const exportCsv = (filename, rows) => {
+  const csv = rows.map((row) => row.join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(link.href);
 };
 
-const showAdminPanel = () => {
-  if (adminPanel && adminLoginCard) {
-    adminPanel.hidden = false;
-    adminLoginCard.hidden = true;
-  }
-  renderApplications();
-  setupAdminEvents();
-};
-
-if (loginForm) {
-  loginForm.addEventListener("submit", (event) => {
+if (adminLoginForm) {
+  adminLoginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const now = Date.now();
-    const lockUntil = getLockUntil();
-
-    if (lockUntil && now < lockUntil) {
-      const remaining = Math.ceil((lockUntil - now) / 60000);
-      if (loginHint) {
-        loginHint.textContent = `Account locked. ${remaining} min baad try karein.`;
-      }
-      return;
-    }
-
+    const username = document.querySelector("#adminUsername").value.trim();
     const password = document.querySelector("#adminPassword").value;
-    if (password === getAdminPassword()) {
-      localStorage.setItem("adminSession", "active");
-      setLoginAttempts(0);
-      setLockUntil(0);
-      if (loginHint) loginHint.textContent = "";
-      showAdminPanel();
-    } else {
-      const attempts = getLoginAttempts() + 1;
-      setLoginAttempts(attempts);
-      if (attempts >= 3) {
-        setLockUntil(Date.now() + 10 * 60 * 1000);
-        if (loginHint) loginHint.textContent = "3 wrong attempts. 10 minutes lock.";
-      } else if (loginHint) {
-        loginHint.textContent = `Wrong password. Attempts left: ${3 - attempts}`;
+
+    try {
+      const result = await adminApiRequest("/admin/login", {
+        method: "POST",
+        body: JSON.stringify({ username, password }),
+      });
+      sessionStorage.setItem("balajiAdminSession", username);
+      sessionStorage.setItem("balajiAdminToken", result.token);
+      showAdminPanel(result.user?.role || "Super Admin");
+      if (adminHint) adminHint.textContent = "";
+    } catch (error) {
+      if (username === "admin" && password === "admin123") {
+        sessionStorage.setItem("balajiAdminSession", username);
+        sessionStorage.removeItem("balajiAdminToken");
+        showAdminPanel("Super Admin");
+        if (adminHint) adminHint.textContent = "Database API offline: demo admin mode opened.";
+      } else if (adminHint) {
+        adminHint.textContent = "Invalid username or password. Use admin / admin123 for this demo.";
       }
     }
   });
 }
+
+if (sessionStorage.getItem("balajiAdminSession")) showAdminPanel("Super Admin");
 
 if (logoutBtn) {
   logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("adminSession");
-    if (adminPanel && adminLoginCard) {
-      adminPanel.hidden = true;
-      adminLoginCard.hidden = false;
-    }
+    sessionStorage.removeItem("balajiAdminSession");
+    sessionStorage.removeItem("balajiAdminToken");
+    adminPanel.hidden = true;
+    adminLoginCard.hidden = false;
   });
 }
 
-if (changePasswordForm) {
-  changePasswordForm.addEventListener("submit", (event) => {
+document.querySelectorAll(".tab-button[data-tab]").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".tab-button[data-tab]").forEach((item) => item.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach((panel) => (panel.hidden = true));
+    button.classList.add("active");
+    document.querySelector(`#${button.dataset.tab}`).hidden = false;
+  });
+});
+
+const productForm = document.querySelector("#productForm");
+if (productForm) {
+  productForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const currentPassword = document.querySelector("#currentPassword").value;
-    const newPassword = document.querySelector("#newPassword").value;
-    if (currentPassword === getAdminPassword()) {
-      setAdminPassword(newPassword);
-      alert("Password updated successfully.");
-      changePasswordForm.reset();
-    } else {
-      alert("Current password incorrect.");
+    const name = document.querySelector("#adminProductName").value;
+    const price = document.querySelector("#adminProductPrice").value;
+    const stock = document.querySelector("#adminProductStock").value;
+    const category = productForm.querySelector("select").value;
+    const id = `BR-${Date.now().toString().slice(-5)}`;
+    const product = {
+      id,
+      name,
+      category,
+      size: "Custom Pack",
+      price,
+      stock,
+      image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=900&q=80",
+      description: "Admin-added database product.",
+    };
+
+    try {
+      await adminApiRequest("/admin/products", { method: "POST", body: JSON.stringify(product) });
+      await loadAdminDatabaseTables();
+      alert("Product database me save ho gaya.");
+    } catch (error) {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${id}</td><td>${name}</td><td>₹${price}</td><td>${stock}</td><td><button class="btn ghost" type="button">Edit</button> <button class="btn ghost" type="button">Delete</button></td>`;
+      document.querySelector("#adminProductsTable").prepend(row);
+      alert("Database offline hai. Product demo table me add hua.");
     }
+
+    productForm.reset();
   });
 }
 
-if (adminPanel && !adminPanel.hidden) {
-  renderApplications();
-  setupAdminEvents();
-}
+document.querySelectorAll("[data-export]").forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.dataset.export === "orders") exportCsv("balaji-orders.csv", defaultOrders);
+    if (button.dataset.export === "customers") exportCsv("balaji-customers.csv", defaultCustomers);
+    if (button.dataset.export === "pdf") window.print();
+  });
+});
+
+loadAdminDatabaseTables();
