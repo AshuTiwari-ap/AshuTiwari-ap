@@ -1,134 +1,78 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en-IN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Panel | Ashu Cyber Cafe</title>
+  <meta name="description" content="Secure admin login dashboard for company settings, products, orders, customers, analytics, content management and reports." />
+  <title>Secure Admin Dashboard | Balaji Refiners</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body class="admin-body">
-  <header class="site-header">
-    <div class="container nav-bar">
-      <div class="logo">
-        <span class="logo-icon"><i class="fa-solid fa-landmark"></i></span>
-        <div>
-          <h1>Ashu Cyber Cafe</h1>
-          <p>& Jan Seva Kendra</p>
-        </div>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="apply.html">Apply Online</a>
-        <a href="status.html">Check Status</a>
-        <a class="active" href="admin.html">Admin Login</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+<header class="site-header">
+  <div class="container nav-bar">
+    <a class="logo" href="index.html" aria-label="Balaji Refiners home">
+      <span class="logo-mark"><i class="fa-solid fa-droplet"></i></span>
+      <div><h1>Balaji Refiners</h1><p>Shudh Sarso Ka Tel</p></div>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="" href="index.html">Home</a>
+      <a class="" href="services.html">About Us</a>
+      <a class="" href="apply.html">Products</a>
+      <a class="" href="status.html">Order Tracking</a>
+      <a class="" href="dashboard.html">Customer Dashboard</a>
+      <a class="active" href="admin.html">Admin</a>
+      <a class="" href="contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+<main>
+  <section class="page-hero"><div class="container"><span class="kicker">Admin Panel</span><h2>Secure role-based operations dashboard.</h2><p>Upload logos and banners, manage products and orders, view analytics, and export reports.</p></div></section>
+  <section class="section"><div class="container admin-layout"><div class="info-card reveal" id="adminLoginCard"><h3>Admin Login</h3><p class="muted">Demo credentials: <strong>admin</strong> / <strong>admin123</strong>. Session is stored securely for this browser tab.</p><form id="adminLoginForm" class="styled-form"><div class="form-row"><label for="adminUsername">Username</label><input id="adminUsername" autocomplete="username" required /></div><div class="form-row"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" required /></div><button class="btn primary" type="submit">Login securely</button><p id="adminHint" class="muted"></p></form></div><div id="adminPanel" class="dashboard-panel reveal" hidden><div class="product-toolbar"><div><h3>Welcome, <span id="adminUserLabel">Super Admin</span></h3><p class="muted">Role: Owner / Operations Admin</p></div><button id="logoutBtn" class="btn ghost">Logout</button></div><div class="grid cols-4"><article class="metric-card"><i class="fa-solid fa-cart-shopping"></i><h4>Total Orders</h4><p>174</p></article><article class="metric-card"><i class="fa-solid fa-hourglass"></i><h4>Pending Orders</h4><p>14</p></article><article class="metric-card"><i class="fa-solid fa-box-open"></i><h4>Processing Orders</h4><p>22</p></article><article class="metric-card"><i class="fa-solid fa-circle-check"></i><h4>Delivered Orders</h4><p>120</p></article><article class="metric-card"><i class="fa-solid fa-users"></i><h4>Total Customers</h4><p>2,840</p></article><article class="metric-card"><i class="fa-solid fa-indian-rupee-sign"></i><h4>Monthly Revenue</h4><p>₹8.6L</p></article><article class="metric-card"><i class="fa-solid fa-triangle-exclamation"></i><h4>Low Stock Products</h4><p>3</p></article><article class="metric-card"><i class="fa-solid fa-calendar-day"></i><h4>Today's Orders</h4><p>26</p></article></div><div class="admin-tabs"><button class="tab-button active" data-tab="settingsTab">Company Settings</button><button class="tab-button" data-tab="productsTab">Product Management</button><button class="tab-button" data-tab="ordersTab">Order Management</button><button class="tab-button" data-tab="customersTab">Customers</button><button class="tab-button" data-tab="analyticsTab">Maintenance Analytics</button><button class="tab-button" data-tab="contentTab">Content Management</button></div>
+    <section id="settingsTab" class="tab-panel"><div class="grid cols-2"><form class="info-card styled-form"><h3>Company Settings</h3><div class="form-row"><label>Upload company logo</label><input type="file" accept="image/*" /></div><div class="form-row"><label>Upload website banners</label><input type="file" accept="image/*" multiple /></div><div class="form-row"><label>Mobile number</label><input value="+91-XXXXXXXXXX" /></div><div class="form-row"><label>Company information</label><textarea>Balaji Refiners - Shudh Sarso Ka Tel</textarea></div><div class="form-row"><label>Social media links</label><input value="Facebook, Instagram, YouTube" /></div><button class="btn primary" type="button">Save Settings</button></form><div class="info-card"><h3>Report Tools</h3><p>Generate sales, delivery, pending order, and completed delivery reports.</p><div class="actions"><button class="btn primary" data-export="orders">Export Excel CSV</button><button class="btn ghost" data-export="pdf">Export PDF</button></div></div></div></section>
+    <section id="productsTab" class="tab-panel" hidden><div class="grid cols-2"><form id="productForm" class="info-card styled-form"><h3>Add / Edit Product</h3><input id="adminProductName" placeholder="Product name" required /><input id="adminProductPrice" placeholder="Price" required /><input id="adminProductStock" placeholder="Stock" required /><select><option>Bottle</option><option>Jar</option><option>Tin</option></select><input type="file" accept="image/*" multiple /><button class="btn primary" type="submit">Add Product</button></form><div class="info-card table-wrapper"><h3>Manage Stock & Categories</h3><table><thead><tr><th>ID</th><th>Product</th><th>Price</th><th>Stock</th><th>Action</th></tr></thead><tbody id="adminProductsTable"><tr><td>BR-1L</td><td>Classic Kachi Ghani Mustard Oil</td><td>₹185</td><td>124</td><td><button class="btn ghost">Edit</button> <button class="btn ghost">Delete</button></td></tr><tr><td>BR-15L</td><td>Commercial Mustard Oil Tin</td><td>₹2,480</td><td>9</td><td><button class="btn ghost">Edit</button> <button class="btn ghost">Delete</button></td></tr></tbody></table></div></div></section>
+    <section id="ordersTab" class="tab-panel" hidden><div class="info-card"><div class="product-toolbar"><h3>Order Management</h3><button class="btn primary" data-export="orders">Export Orders</button></div><div class="table-wrapper"><table><thead><tr><th>Order</th><th>Customer</th><th>Status</th><th>Total</th><th>Payment</th><th>Action</th></tr></thead><tbody id="ordersTable"></tbody></table></div></div></section>
+    <section id="customersTab" class="tab-panel" hidden><div class="info-card"><div class="product-toolbar"><h3>Customer Management</h3><button class="btn primary" data-export="customers">Export Customers</button></div><div class="table-wrapper"><table><thead><tr><th>ID</th><th>Customer</th><th>Orders</th><th>Revenue</th><th>Activity</th><th>Action</th></tr></thead><tbody id="customersTable"></tbody></table></div></div></section>
+    <section id="analyticsTab" class="tab-panel" hidden><div class="grid cols-2"><div class="info-card chart-card"><h3>Monthly Sales</h3><div class="bar-chart"><span style="height:45%">Jan</span><span style="height:55%">Feb</span><span style="height:70%">Mar</span><span style="height:62%">Apr</span><span style="height:84%">May</span><span style="height:96%">Jun</span></div></div><div class="info-card chart-card"><h3>Order Status</h3><div class="donut"></div><p>Pending · Processing · Shipped · Delivered</p></div><div class="info-card chart-card"><h3>Revenue Growth</h3><div class="bar-chart"><span style="height:35%">Q1</span><span style="height:58%">Q2</span><span style="height:76%">Q3</span><span style="height:92%">Q4</span></div></div><div class="info-card chart-card"><h3>Product Performance</h3><div class="bar-chart"><span style="height:90%">1L</span><span style="height:72%">2L</span><span style="height:66%">5L</span><span style="height:48%">15L</span></div></div></div></section>
+    <section id="contentTab" class="tab-panel" hidden><div class="grid cols-2"><form class="info-card styled-form"><h3>Homepage Content Editor</h3><input value="Shudh Sarso Ka Tel for every royal Indian kitchen" /><textarea>Update homepage intro, CTA copy, SEO text, and offer banners.</textarea><button class="btn primary" type="button">Publish Content</button></form><form class="info-card styled-form"><h3>Review & Blog Management</h3><input placeholder="Review title or blog headline" /><textarea placeholder="Review or blog content"></textarea><input type="file" accept="image/*" /><button class="btn primary" type="button">Save Content</button></form></div></section>
+  </div></div></section>
+</main>
+<a class="cart-float" href="dashboard.html#checkout" aria-label="Cart"><i class="fa-solid fa-cart-shopping"></i><span data-cart-count>0</span></a>
+<a class="whatsapp-float" href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h3>Balaji Refiners - Shudh Sarso Ka Tel</h3>
+      <p>Premium edible mustard oil refined with classic Indian values, modern quality systems, and trusted distribution.</p>
     </div>
-  </header>
-
-  <section class="page-hero">
-    <div class="container">
-      <h2>Admin Panel</h2>
-      <p>Secure login ke baad applications manage karein.</p>
+    <div>
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="contact.html#privacy">Privacy Policy</a></li>
+        <li><a href="contact.html#terms">Terms & Conditions</a></li>
+        <li><a href="contact.html#refund">Refund Policy</a></li>
+      </ul>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container admin-grid">
-      <div class="info-card" id="adminLoginCard">
-        <h3>Admin Login</h3>
-        <p>Default password: <strong>admin123</strong></p>
-        <form id="adminLoginForm" class="styled-form">
-          <div class="form-row">
-            <label for="adminPassword">Password</label>
-            <input type="password" id="adminPassword" required />
-          </div>
-          <button type="submit" class="btn primary">Login</button>
-          <p class="muted" id="loginHint"></p>
-        </form>
-      </div>
-
-      <div class="admin-panel" id="adminPanel" hidden>
-        <div class="admin-top">
-          <div>
-            <h3>Dashboard</h3>
-            <p>Applications ka complete overview.</p>
-          </div>
-          <button id="logoutBtn" class="btn ghost">Logout</button>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <h4>Total Applications</h4>
-            <p id="totalApplications">0</p>
-          </div>
-          <div class="stat-card">
-            <h4>New Applications</h4>
-            <p id="newApplications">0</p>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <h4>Change Password</h4>
-          <form id="changePasswordForm" class="styled-form inline-form">
-            <input type="password" id="currentPassword" placeholder="Current Password" required />
-            <input type="password" id="newPassword" placeholder="New Password" required />
-            <button class="btn primary" type="submit">Update</button>
-          </form>
-        </div>
-
-        <div class="info-card">
-          <h4>Applications List</h4>
-          <div class="table-wrapper">
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Service</th>
-                  <th>Mobile</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="applicationsTable"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="apply.html">Shop Products</a></li>
+        <li><a href="status.html">Track Order</a></li>
+        <li><a href="admin.html">Admin Login</a></li>
+      </ul>
     </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <h3>Ashu Cyber Cafe &amp; Jan Seva Kendra</h3>
-        <p>Digital services that empower every citizen.</p>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="apply.html">Apply Online</a></li>
-          <li><a href="status.html">Check Status</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p><i class="fa-solid fa-location-dot"></i> Your Address, City</p>
-        <p><i class="fa-solid fa-phone"></i> +91 99999 99999</p>
-        <p><i class="fa-solid fa-envelope"></i> ashucafe@email.com</p>
-      </div>
+    <div>
+      <h4>Contact</h4>
+      <p><i class="fa-solid fa-phone"></i> +91-XXXXXXXXXX</p>
+      <p><i class="fa-solid fa-envelope"></i> care@balajirefiners.example</p>
+      <p><i class="fa-brands fa-facebook"></i> Facebook · Instagram · YouTube</p>
     </div>
-    <p class="copyright">© 2024 Ashu Cyber Cafe. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
-  <script src="admin.js"></script>
-</body>
-</html>
+  </div>
+  <div class="footer-bottom">© 2026 Balaji Refiners. All rights reserved. GST invoices available on every eligible order.</div>
+</footer>
+<script src="script.js"></script>
+<script src="admin.js"></script></body></html>
